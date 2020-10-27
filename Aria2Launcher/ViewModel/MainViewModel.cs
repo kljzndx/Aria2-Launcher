@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
-
+using Aria2Launcher.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Threading;
@@ -13,8 +13,6 @@ namespace Aria2Launcher.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private bool _isRunning;
-        private string _aria2DirPath;
-        private string _trackerSource;
         private Process _aria2Process;
 
         public MainViewModel()
@@ -31,7 +29,7 @@ namespace Aria2Launcher.ViewModel
             _aria2Process.ErrorDataReceived += Aria2Process_ErrorDataReceived;
             _aria2Process.Exited += Aria2Process_Exited;
 
-            BrowseAria2DirCommand = new RelayCommand(() => Aria2DirPath = BrowseFolder());
+            BrowseAria2DirCommand = new RelayCommand(() => Configuration.Aria2DirPath = BrowseFolder());
 
             StartAria2Command = new RelayCommand(StartAria2, () => !IsRunning);
             StopAria2Command = new RelayCommand(StopAria2, () => IsRunning);
@@ -43,17 +41,7 @@ namespace Aria2Launcher.ViewModel
             set => Set(ref _isRunning, value);
         }
 
-        public string Aria2DirPath
-        {
-            get => _aria2DirPath;
-            set => Set(ref _aria2DirPath, value.Trim().TrimEnd('\\'));
-        }
-
-        public string TrackerSource
-        {
-            get => _trackerSource;
-            set => Set(ref _trackerSource, value);
-        }
+        public ConfigurationService Configuration { get; } = ConfigurationService.Current;
 
         public ObservableCollection<string> OutputList { get; } = new ObservableCollection<string>();
 
@@ -76,8 +64,8 @@ namespace Aria2Launcher.ViewModel
 
         private bool SetupProcess()
         {
-            string exePath = _aria2DirPath + "\\aria2c.exe";
-            string confPath = _aria2DirPath + "\\aria2.conf";
+            string exePath = Configuration.Aria2DirPath + "\\aria2c.exe";
+            string confPath = Configuration.Aria2DirPath + "\\aria2.conf";
 
             if (File.Exists(exePath))
                 Log("已找到 aria2c.exe");
@@ -97,7 +85,7 @@ namespace Aria2Launcher.ViewModel
             
             _aria2Process.StartInfo.FileName = exePath;
             _aria2Process.StartInfo.Arguments = $"--conf-path {confPath}";
-            _aria2Process.StartInfo.WorkingDirectory = _aria2DirPath;
+            _aria2Process.StartInfo.WorkingDirectory = Configuration.Aria2DirPath;
             
             return true;
         }
@@ -128,7 +116,7 @@ namespace Aria2Launcher.ViewModel
             {
                 picker.RootFolder = Environment.SpecialFolder.MyComputer;
                 var dialogResult = picker.ShowDialog();
-                return dialogResult == DialogResult.OK ? picker.SelectedPath : Aria2DirPath;
+                return dialogResult == DialogResult.OK ? picker.SelectedPath : Configuration.Aria2DirPath;
             }
         }
 
