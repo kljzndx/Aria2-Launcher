@@ -12,6 +12,50 @@
     </Window.DataContext>
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <StackPanel>
+                <TextBlock Text="Aria2 文件路径"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox x:Name="Aria2Path_TextBox" Text="{Binding Aria2DirPath, Mode=TwoWay}"/>
+                    <Button x:Name="Aria2PathBrowse_Button" Grid.Column="1" Command="{Binding BrowseAria2DirCommand}" Content="浏览"/>
+                </Grid>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Tracker 更新地址"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox x:Name="TrackerSource_TextBox" Text="{Binding TrackerSource, Mode=TwoWay}"/>
+                    <Button x:Name="UpgradeTracker_Button" Grid.Column="1" Command="{Binding UpgradeTrackerCommand}" Content="立即更新 Upgrade now"/>
+                </Grid>
+            </StackPanel>
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="StartAria2_Button" Command="{Binding StartAria2Command}" Content="启动 Aria2"/>
+                <Button x:Name="StopAria2_Button" Grid.Column="1" Command="{Binding StopAria2Command}" Content="停止 Aria2"/>
+            </Grid>
+        </StackPanel>
+
+        <ListBox x:Name="Output_ListBox" Grid.Row="1" ItemsSource="{Binding OutputList, Mode=OneWay}">
+            
+        </ListBox>
     </Grid>
 </Window>
