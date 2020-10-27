@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:Aria2Launcher.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Width="800" Height="450">
+        Title="Aria2 Launcher" Width="800" Height="450">
     
     <Window.DataContext>
         <vm:MainViewModel/>
