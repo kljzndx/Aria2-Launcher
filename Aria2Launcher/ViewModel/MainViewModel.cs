@@ -65,7 +65,7 @@ namespace Aria2Launcher.ViewModel
 
         private void Log(string content)
         {
-            if (String.IsNullOrEmpty(content))
+            if (String.IsNullOrWhiteSpace(content))
                 return;
 
             OutputList.Add(content);
@@ -120,12 +120,6 @@ namespace Aria2Launcher.ViewModel
         private void StopAria2()
         {
             _aria2Process.Kill();
-            
-            _aria2Process.CancelOutputRead();
-            _aria2Process.CancelErrorRead();
-
-            IsRunning = false;
-            Log("Aria2 已退出");
         }
 
         private string BrowseFolder()
@@ -150,7 +144,14 @@ namespace Aria2Launcher.ViewModel
 
         private void Aria2Process_Exited(object sender, EventArgs e)
         {
-            DispatcherHelper.RunAsync(() => StopAria2());
+            DispatcherHelper.RunAsync(() => 
+            {
+                _aria2Process.CancelOutputRead();
+                _aria2Process.CancelErrorRead();
+
+                IsRunning = false;
+                Log("Aria2 已退出");
+            });
         }
     }
 }
