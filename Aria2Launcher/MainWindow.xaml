@@ -19,15 +19,15 @@
 
         <StackPanel>
             <StackPanel>
-                <TextBlock Text="Aria2 文件路径"/>
+                <TextBlock Text="Aria2 文件夹路径"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBox x:Name="Aria2Path_TextBox" Text="{Binding Aria2DirPath, Mode=TwoWay}"/>
-                    <Button x:Name="Aria2PathBrowse_Button" Grid.Column="1" Command="{Binding BrowseAria2DirCommand}" Content="浏览"/>
+                    <TextBox x:Name="Aria2DirPath_TextBox" Text="{Binding Aria2DirPath, Mode=TwoWay}"/>
+                    <Button x:Name="Aria2DirPathBrowse_Button" Grid.Column="1" Command="{Binding BrowseAria2DirCommand}" Content="浏览"/>
                 </Grid>
             </StackPanel>
             <StackPanel>
@@ -54,8 +54,6 @@
             </Grid>
         </StackPanel>
 
-        <ListBox x:Name="Output_ListBox" Grid.Row="1" ItemsSource="{Binding OutputList, Mode=OneWay}">
-            
-        </ListBox>
+        <ListBox x:Name="Output_ListBox" Grid.Row="1" ItemsSource="{Binding OutputList, Mode=OneWay}"/>
     </Grid>
 </Window>
