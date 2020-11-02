@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:Aria2Launcher.ViewModel"
         mc:Ignorable="d"
-        Title="Aria2 Launcher" Width="800" Height="450">
+        Title="Aria2 Launcher" Width="800" Height="450" Loaded="Window_Loaded">
     
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
-
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
