@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using Aria2Launcher.Services;
 using GalaSoft.MvvmLight.Threading;
@@ -38,6 +33,8 @@ namespace Aria2Launcher
                 MainWindow = new MainWindow();
                 MainWindow.Show();
             }
+
+            Aria2Service.Current.ErrorDataReceived += Aria2Service_ErrorDataReceived;
         }
 
         protected override void OnExit(ExitEventArgs e)
@@ -46,6 +43,15 @@ namespace Aria2Launcher
                 Aria2Service.Current.StopAria2();
 
             base.OnExit(e);
+        }
+
+        private void Aria2Service_ErrorDataReceived(object sender, string e)
+        {
+            if (MainWindow == null)
+            {
+                MainWindow = new MainWindow();
+                MainWindow.Show();
+            }
         }
     }
 }

@@ -14,6 +14,8 @@ namespace Aria2Launcher.Services
         private bool _isRunning;
         private readonly Process _aria2Process;
 
+        public event EventHandler<string> ErrorDataReceived;
+
         static Aria2Service()
         {
             Current = new Aria2Service();
@@ -45,15 +47,24 @@ namespace Aria2Launcher.Services
 
         public ObservableCollection<string> OutputList { get; }
 
-        private void Log(string content)
+        private bool Log(string content)
         {
             if (String.IsNullOrWhiteSpace(content))
-                return;
+                return false;
 
             OutputList.Add(content);
 
             if (OutputList.Count > 50)
                 OutputList.RemoveAt(0);
+
+            return true;
+        }
+
+        private void LogError(string content)
+        {
+            Log(content);
+            
+            ErrorDataReceived?.Invoke(this, content);
         }
 
         private bool SetupProcess()
@@ -65,7 +76,7 @@ namespace Aria2Launcher.Services
                 Log("已找到 aria2c.exe");
             else
             {
-                Log("未找到 aria2c.exe");
+                LogError("未找到 aria2c.exe");
                 return false;
             }
             
@@ -73,7 +84,7 @@ namespace Aria2Launcher.Services
                 Log("已找到 aria2.conf");
             else
             {
-                Log("未找到 aria2.conf");
+                LogError("未找到 aria2.conf");
                 return false;
             }
             
@@ -111,7 +122,7 @@ namespace Aria2Launcher.Services
 
         private void Aria2Process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
         {
-            DispatcherHelper.RunAsync(() => Log(e.Data));
+            DispatcherHelper.RunAsync(() => LogError(e.Data));
         }
 
         private void Aria2Process_Exited(object sender, EventArgs e)
