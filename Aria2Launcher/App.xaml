@@ -2,11 +2,24 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:tb="http://www.hardcodet.net/taskbar"
+             xmlns:vm="clr-namespace:Aria2Launcher.ViewModel"
              ShutdownMode="OnExplicitShutdown">
     
     <Application.Resources>
-        <tb:TaskbarIcon x:Key="tb" IconSource="logo.ico">
+        <tb:TaskbarIcon x:Key="taskbar" IconSource="logo.ico" DoubleClickCommand="{Binding ShowWindowCommand}">
+            <tb:TaskbarIcon.DataContext>
+                <vm:TaskBarViewModel/>
+            </tb:TaskbarIcon.DataContext>
             
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="启动 Aria2" Command="{Binding StartAria2Command}"/>
+                    <MenuItem Header="停止 Aria2" Command="{Binding StopAria2Command}"/>
+                    <Separator/>
+                    <MenuItem Header="显示主窗口" Command="{Binding ShowWindowCommand}"/>
+                    <MenuItem Header="退出" Command="{Binding ExitAppCommand}"/>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>
     </Application.Resources>
 </Application>

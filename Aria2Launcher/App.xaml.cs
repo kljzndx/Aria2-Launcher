@@ -25,10 +25,26 @@ namespace Aria2Launcher
         {
             base.OnStartup(e);
 
+            var tb = (TaskbarIcon) FindResource("taskbar");
+
             ConfigurationService.Current.Load();
 
-            MainWindow = new MainWindow();
-            MainWindow.Show();
+            if (e.Args.Any(s => s == "-q"))
+            {
+                Aria2Service.Current.StartAria2();
+            }
+            else
+            {
+                MainWindow = new MainWindow();
+                MainWindow.Show();
+            }
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            Aria2Service.Current.StopAria2();
+
+            base.OnExit(e);
         }
     }
 }
