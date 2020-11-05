@@ -42,7 +42,8 @@ namespace Aria2Launcher
 
         protected override void OnExit(ExitEventArgs e)
         {
-            Aria2Service.Current.StopAria2();
+            if (Aria2Service.Current.IsRunning)
+                Aria2Service.Current.StopAria2();
 
             base.OnExit(e);
         }
