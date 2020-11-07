@@ -47,17 +47,15 @@ namespace Aria2Launcher.Services
 
         public ObservableCollection<string> OutputList { get; }
 
-        private bool Log(string content)
+        private void Log(string content)
         {
             if (String.IsNullOrWhiteSpace(content))
-                return false;
+                return;
 
             OutputList.Add(content);
 
             if (OutputList.Count > 50)
                 OutputList.RemoveAt(0);
-
-            return true;
         }
 
         private void LogError(string content)

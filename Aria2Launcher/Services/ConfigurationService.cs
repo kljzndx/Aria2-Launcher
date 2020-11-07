@@ -16,12 +16,16 @@ namespace Aria2Launcher.Services
 
         public static ConfigurationService Current { get; }
 
-        private bool _isUpdating;
-
         static ConfigurationService()
         {
             Current = new ConfigurationService();
         }
+
+        private bool _isUpdating;
+
+        private string _aria2DirPath;
+        private string _trackerSource;
+        private bool _isAutoStart;
 
         private ConfigurationService()
         {
@@ -29,9 +33,6 @@ namespace Aria2Launcher.Services
             _trackerSource = "https://trackerslist.com/all.txt";
         }
 
-        private string _aria2DirPath;
-        private string _trackerSource;
-        
         public string Aria2DirPath
         {
             get => _aria2DirPath;
@@ -42,6 +43,12 @@ namespace Aria2Launcher.Services
         {
             get => _trackerSource;
             set => SetSetting(ref _trackerSource, value);
+        }
+
+        public bool IsAutoStart
+        {
+            get => _isAutoStart;
+            set => SetSetting(ref _isAutoStart, value);
         }
 
         private void SetSetting<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)

@@ -16,6 +16,7 @@
                     <MenuItem Header="启动 Aria2" Command="{Binding StartAria2Command}"/>
                     <MenuItem Header="停止 Aria2" Command="{Binding StopAria2Command}"/>
                     <Separator/>
+                    <MenuItem Header="开机启动" IsCheckable="True" IsChecked="{Binding Configuration.IsAutoStart}" Command="{Binding AutoStartCommand}" CommandParameter="{Binding Configuration.IsAutoStart}"/>
                     <MenuItem Header="显示主窗口" Command="{Binding ShowWindowCommand}"/>
                     <MenuItem Header="退出" Command="{Binding ExitAppCommand}"/>
                 </ContextMenu>
