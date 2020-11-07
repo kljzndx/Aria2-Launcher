@@ -60,6 +60,9 @@ namespace Aria2Launcher.Services
 
         private void LogError(string content)
         {
+            if (String.IsNullOrWhiteSpace(content))
+                return;
+
             Log(content);
             
             ErrorDataReceived?.Invoke(this, content);
