@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using System.Windows;
 using Aria2Launcher.Services;
 using GalaSoft.MvvmLight.Threading;
@@ -23,8 +24,9 @@ namespace Aria2Launcher
             var tb = (TaskbarIcon) FindResource("taskbar");
 
             ConfigurationService.Current.Load();
+            Aria2Service.Current.ErrorDataReceived += Aria2Service_ErrorDataReceived;
 
-            if (e.Args.Any(s => s == "-q"))
+            if (Directory.Exists(ConfigurationService.Current.Aria2DirPath))
             {
                 Aria2Service.Current.StartAria2();
             }
@@ -33,8 +35,6 @@ namespace Aria2Launcher
                 MainWindow = new MainWindow();
                 MainWindow.Show();
             }
-
-            Aria2Service.Current.ErrorDataReceived += Aria2Service_ErrorDataReceived;
         }
 
         protected override void OnExit(ExitEventArgs e)

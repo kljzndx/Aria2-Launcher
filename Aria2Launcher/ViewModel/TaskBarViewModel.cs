@@ -50,7 +50,7 @@ namespace Aria2Launcher.ViewModel
         /// </summary>
         /// <param name="lnkFilePath">快捷方式的完全限定路径。</param>
         /// <param name="args">快捷方式启动程序时需要使用的参数。</param>
-        private void CreateShortcut(string lnkFilePath, string args)
+        private void CreateShortcut(string lnkFilePath, string args = "")
         {
             var dllPath = Assembly.GetEntryAssembly()?.Location;
 
@@ -77,7 +77,7 @@ namespace Aria2Launcher.ViewModel
             if (!needAutoStart)
                 return;
 
-            CreateShortcut(lnkPath, "-q");
+            CreateShortcut(lnkPath);
         }
     }
 }
