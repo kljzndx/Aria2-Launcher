@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace Aria2Launcher
+namespace Aria2Launcher.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

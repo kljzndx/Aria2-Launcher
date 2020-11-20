@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using Aria2Launcher.Services;
+using Aria2Launcher.Views;
 using GalaSoft.MvvmLight.Threading;
 using Hardcodet.Wpf.TaskbarNotification;
 
