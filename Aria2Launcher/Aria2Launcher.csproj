@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Aria2ConfDoc.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <COMReference Include="Shell32.dll">
       <Guid>50a7e9b0-70ef-11d1-b75a-00a0c90564fe</Guid>
       <VersionMajor>1</VersionMajor>
@@ -36,6 +40,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Assets\Aria2ConfDoc.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Assets\logo.ico" />
   </ItemGroup>
 

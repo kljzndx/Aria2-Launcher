@@ -48,10 +48,12 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <Button x:Name="StartAria2_Button" Command="{Binding StartAria2Command}" Content="启动 Aria2"/>
                 <Button x:Name="StopAria2_Button" Grid.Column="1" Command="{Binding StopAria2Command}" Content="停止 Aria2"/>
+                <Button x:Name="ConfigureAria2_Button" Grid.Column="2" Command="{Binding ShowConfigueCommand}" Content="Aria2 配置面板"/>
             </Grid>
         </StackPanel>
 

@@ -1,0 +1,116 @@
+[
+  {
+    "name": "RPC",
+    "items": [
+      { "name": "是否开启", "description": "", "key": "enable-rpc", "defaultValue": "false", "optionList": ["true", "false"] },
+      { "name": "接受所有远程请求", "description": "", "key": "rpc-allow-origin-all", "defaultValue": "false", "optionList": ["true", "false"] },
+      { "name": "允许外部访问", "description": "", "key": "rpc-listen-all", "defaultValue": "false", "optionList": ["true", "false"] },
+      { "name": "监听端口", "description": "", "key": "rpc-listen-port", "defaultValue": "6800", "optionList": ["6800"] },
+      { "name": "密钥", "description": "", "key": "rpc-secret", "defaultValue": "", "optionList": ["Happy_Studio"] },
+      { "name": "最大请求大小", "description": "", "key": "rpc-max-request-size", "defaultValue": "", "optionList": ["1M","3M","5M","7M","10M"] }
+    ]
+  },
+  {
+    "name": "文件保存",
+    "items": [
+      { "name": "下载目录", "description": "", "key": "dir", "defaultValue": "", "optionList": [""] },
+      { "name": "磁盘缓存大小", "description": "", "key": "disk-cache", "defaultValue": "16M", "optionList": ["8M","16M","32M","64M"] },
+      { "name": "文件预分配方式", "description": "固态硬盘用户请设置为 none", "key": "file-allocation", "defaultValue": "prealloc", "optionList": ["none","prealloc","trunc","falloc"] },
+      { "name": "文件预分配大小阈值", "description": "小于此阈值大小的文件不预分配空间", "key": "no-file-allocation-limit", "defaultValue": "5M", "optionList": ["5M","8M","16M","32M","64M"] },
+      { "name": "尝试断点续传", "description": "", "key": "continue", "defaultValue": "", "optionList": ["true","false"] },
+      { "name": "始终尝试断点续传", "description": "无法断点续传则终止下载", "key": "always-resume", "defaultValue": "true", "optionList": ["true","false"] },
+      { "name": "续传失败最大次数", "description": "", "key": "max-resume-failure-tries", "defaultValue": "", "optionList": ["0","1","2","3","4","5"] },
+      { "name": "获取服务器文件时间", "description": "", "key": "remote-time", "defaultValue": "false", "optionList": ["true","false"] }
+    ]
+  },
+  {
+    "name": "进度保存",
+    "items": [
+      { "name": "会话文件导入路径", "description": "", "key": "input-file", "defaultValue": "", "optionList": ["./aria2.session"] },
+      { "name": "会话文件保存路径", "description": "", "key": "save-session", "defaultValue": "", "optionList": ["./aria2.session"] },
+      { "name": "会话文件定时保存间隔（秒）", "description": "0 为进程正常退出时保存", "key": "save-session-interval", "defaultValue": "0", "optionList": ["0","10","30","60"] },
+      { "name": "任务进度定时保存间隔（秒）", "description": "0 为进程正常退出时保存", "key": "auto-save-interval", "defaultValue": "60", "optionList": ["0","10","30","60"] },
+      { "name": "强制保存", "description": "即使任务已完成也保存信息到会话文件", "key": "force-save", "defaultValue": "false", "optionList": ["true","false"] }
+    ]
+  },
+  {
+    "name": "下载连接",
+    "items": [
+      { "name": "文件未找到重试次数", "description": "0 为禁用", "key": "max-file-not-found", "defaultValue": "0", "optionList": ["0","1","5","10"] },
+      { "name": "最大尝试次数", "description": "0 为无限", "key": "max-tries", "defaultValue": "5", "optionList": ["0","1","5","10"] },
+      { "name": "重试等待时间（秒）", "description": "0 为禁用", "key": "retry-wait", "defaultValue": "0", "optionList": ["0","10","30","60"] },
+      { "name": "连接超时时间（秒）", "description": "", "key": "connect-timeout", "defaultValue": "60", "optionList": ["10","30","60"] },
+      { "name": "超时时间（秒）", "description": "", "key": "timeout", "defaultValue": "60", "optionList": ["10","30","60"] },
+      { "name": "最大同时下载任务数", "description": "", "key": "max-concurrent-downloads", "defaultValue": "5", "optionList": ["5","10","15"] },
+      { "name": "单服务器最大连接线程数", "description": "最大值为 16", "key": "max-connection-per-server", "defaultValue": "1", "optionList": ["4","8","16"] },
+      { "name": "单任务最大连接线程数", "description": "", "key": "split", "defaultValue": "5", "optionList": ["5","8","16"] },
+      { "name": "文件最小分段大小", "description": "取值范围 1M-1024M", "key": "min-split-size", "defaultValue": "20M", "optionList": ["4M","8M","16M","32M"] },
+      { "name": "HTTP/FTP 下载分片大小", "description": "所有分段都必须是此值的倍数", "key": "min-split-size", "defaultValue": "1M", "optionList": ["1M","4M","8M","16M","32M"] },
+      { "name": "允许分片大小变化", "description": "true：丢失部分下载进度继续下载;\r\nfalse：当分片大小与控制文件中的不同时将会中止下载;", "key": "allow-piece-length-change", "defaultValue": "false", "optionList": ["true","false"] },
+      { "name": "最低下载速度限制", "description": "0 为无限制", "key": "lowest-speed-limit", "defaultValue": "0", "optionList": ["0","1M","2M","4M","8M"] },
+      { "name": "全局最大下载速度限制", "description": "0 为无限制", "key": "max-overall-download-limit", "defaultValue": "0", "optionList": ["0","1M","2M","4M","8M"] },
+      { "name": "单任务下载速度限制", "description": "0 为无限制", "key": "max-download-limit", "defaultValue": "0", "optionList": ["0","1M","2M","4M","8M"] },
+      { "name": "禁用 IPv6", "description": "", "key": "disable-ipv6", "defaultValue": "false", "optionList": ["true","false"] },
+      { "name": "GZip 支持", "description": "", "key": "http-accept-gzip", "defaultValue": "false", "optionList": ["true","false"] },
+      { "name": "URI 复用", "description": "", "key": "reuse-uri", "defaultValue": "true", "optionList": ["true","false"] },
+      { "name": "禁用 netrc 支持", "description": "", "key": "no-netrc", "defaultValue": "false", "optionList": ["true","false"] },
+      { "name": "允许覆盖", "description": "当相关控制文件(.aria2)不存在时从头开始重新下载", "key": "allow-overwrite", "defaultValue": "false", "optionList": ["true","false"] },
+      { "name": "文件自动重命名", "description": "此选项仅在 HTTP(S)/FTP 下载中有效", "key": "auto-file-renaming", "defaultValue": "true", "optionList": ["true","false"] },
+      { "name": "使用 UTF-8 处理 Content-Disposition", "description": "", "key": "content-disposition-default-utf8", "defaultValue": "false", "optionList": ["true","false"] },
+      { "name": "最低 TLS 版本", "description": "", "key": "min-tls-version", "defaultValue": "TLSv1.2", "optionList": ["TLSv1.1","TLSv1.2","TLSv1.3"] }
+    ]
+  },
+  {
+    "name": "BT 下载",
+    "items": [
+      { "name": "Tracker 列表", "description": "地址分割符为英文逗号", "key": "bt-tracker", "defaultValue": "", "optionList": [""] },
+      { "name": "BT 监听端口(TCP)", "description": "若不指定则端口随机", "key": "listen-port", "defaultValue": "", "optionList": ["6881","6999"] },
+      { "name": "DHT 网络监听端口(UDP)", "description": "若不指定则端口随机", "key": "dht-listen-port", "defaultValue": "", "optionList": ["6881","6999"] },
+      { "name": "启用 IPv4 DHT 功能", "description": "", "key": "enable-dht", "defaultValue": "true", "optionList": ["true","false"] },
+      { "name": "启用 IPv6 DHT 功能", "description": "", "key": "enable-dht6", "defaultValue": "false", "optionList": ["true","false"] },
+      { "name": "IPv4 DHT 文件路径", "description": "", "key": "dht-file-path", "defaultValue": "", "optionList": ["./dht.dat"] },
+      { "name": "IPv6 DHT 文件路径", "description": "", "key": "dht-file-path6", "defaultValue": "", "optionList": ["./dht6.dat"] },
+      { "name": "IPv4 DHT 网络引导节点", "description": "", "key": "dht-entry-point", "defaultValue": "", "optionList": ["dht.transmissionbt.com:6881"] },
+      { "name": "IPv6 DHT 网络引导节点", "description": "", "key": "dht-entry-point6", "defaultValue": "", "optionList": ["dht.transmissionbt.com:6881"] },
+      { "name": "启用本地节点查找", "description": "", "key": "bt-enable-lpd", "defaultValue": "false", "optionList": ["true","false"] },
+      { "name": "启用节点交换", "description": "", "key": "enable-peer-exchange", "defaultValue": "true", "optionList": ["true","false"] },
+      { "name": "单个种子最大连接数", "description": "0为不限制", "key": "listen-port", "defaultValue": "55", "optionList": [""] },
+      { "name": "期望下载速度", "description": "BT 下载速度低于此选项设置的值时临时提高连接数来获得更快的下载速度", "key": "bt-request-peer-speed-limit", "defaultValue": "50K", "optionList": ["50K","1M"] },
+      { "name": "全局最大上传速度限制", "description": "0为不限制", "key": "max-overall-upload-limit", "defaultValue": "0", "optionList": ["0","1M","2M","5M"] },
+      { "name": "单任务上传速度限制", "description": "0为不限制", "key": "max-upload-limit", "defaultValue": "0", "optionList": ["0","1M","2M","5M"] },
+      { "name": "最小分享率", "description": "当种子的分享率达到此值时将停止做种\n设置为 0 为一直做种，强烈建议您设置为大于等于 1.0", "key": "seed-ratio", "defaultValue": "1.0", "optionList": ["0","1.0","2.0","5.0"] },
+      { "name": "最小做种时间（分钟）", "description": "设置为 0 时将在 BT 任务下载完成后停止做种", "key": "seed-time", "defaultValue": "", "optionList": ["0","1","2","5"] },
+      { "name": "做种前校验文件", "description": "", "key": "bt-hash-check-seed", "defaultValue": "true", "optionList": ["true","false"] },
+      { "name": "继续之前的BT任务时, 无需再次校验", "description": "", "key": "bt-seed-unverified", "defaultValue": "false", "optionList": ["true","false"] },
+      { "name": "Tracker 服务器连接超时时间（秒）", "description": "", "key": "bt-tracker-connect-timeout", "defaultValue": "60", "optionList": ["10","30","60"] },
+      { "name": "Tracker 服务器超时时间（秒）", "description": "", "key": "bt-tracker-timeout", "defaultValue": "60", "optionList": ["10","30","60"] },
+      { "name": "Tracker 服务器连接间隔时间（秒）", "description": "设为 0 为自动", "key": "bt-tracker-interval", "defaultValue": "0", "optionList": ["0","1","2","3"] },
+      { "name": "BT 下载优先下载文件开头或结尾", "description": "", "key": "bt-prioritize-piece", "defaultValue": "", "optionList": ["head=32M,tail=32M"] },
+      { "name": "保存通过RPC上传的种子文件", "description": "", "key": "rpc-save-upload-metadata", "defaultValue": "true", "optionList": ["true","false"] },
+      { "name": "下载种子文件后自动开始下载", "description": "true：保存种子文件;\nfalse：仅下载种子文件;\nmem：将种子保存在内存中", "key": "follow-torrent", "defaultValue": "true", "optionList": ["true","false","mem"] },
+      { "name": "种子文件下载完后暂停任务", "description": "", "key": "pause-metadata", "defaultValue": "false", "optionList": ["true","false"] },
+      { "name": "保存磁力链接元数据为种子文件", "description": "", "key": "bt-save-metadata", "defaultValue": "false", "optionList": ["true","false"] },
+      { "name": "加载已保存的元数据文件", "description": "", "key": "bt-load-saved-metadata", "defaultValue": "false", "optionList": ["true","false"] },
+      { "name": "删除 BT 下载任务中未选择文件", "description": "", "key": "bt-remove-unselected-file", "defaultValue": "false", "optionList": ["true","false"] },
+      { "name": "BT强制加密", "description": "", "key": "bt-force-encryption", "defaultValue": "false", "optionList": ["true","false"] },
+      { "name": "分离仅做种任务", "description": "", "key": "bt-detach-seed-only", "defaultValue": "false", "optionList": ["true","false"] }
+    ]
+  },
+  {
+    "name": "客户端伪装",
+    "items": [
+      { "name": "User Agent", "description": "", "key": "user-agent", "defaultValue": "", "optionList": ["qBittorrent/4.2.5","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4160.0 Safari/537.36 Edge/85.0.537.0"] },
+      { "name": "Peer Agent", "description": "", "key": "peer-agent", "defaultValue": "", "optionList": ["qBittorrent/4.2.5"] },
+      { "name": "Peer Id Prefix", "description": "", "key": "peer-id-prefix", "defaultValue": "", "optionList": ["-qB4250-"] }
+    ]
+  },
+  {
+    "name": "日志",
+    "items": [
+      { "name": "文件保存路径", "description": "设置为空为不保存", "key": "log", "defaultValue": "", "optionList": ["./aria2.log"] },
+      { "name": "日志级别", "description": "", "key": "log-level", "defaultValue": "debug", "optionList": ["debug","info","notice","warn","error"] },
+      { "name": "控制台日志级别", "description": "", "key": "console-log-level", "defaultValue": "notice", "optionList": ["debug","info","notice","warn","error"] },
+      { "name": "禁用控制台日志", "description": "", "key": "quiet", "defaultValue": "false", "optionList": ["true","false"] }
+    ]
+  }
+]
