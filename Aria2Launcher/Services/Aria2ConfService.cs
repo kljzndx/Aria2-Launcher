@@ -2,7 +2,11 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using Aria2Launcher.Models.SettingModels;
 using Newtonsoft.Json;
 
@@ -11,6 +15,8 @@ namespace Aria2Launcher.Services
     public class Aria2ConfService
     {
         private string _filePath;
+        private bool _isLoaded;
+        private HttpClient _http = new HttpClient();
 
         public Aria2ConfService(string docJson)
         {
@@ -19,6 +25,25 @@ namespace Aria2Launcher.Services
 
         public ObservableCollection<SettingGroup> SettingGroupList { get; }
 
+        public async Task UpdateTracker(string trackerSource)
+        {
+            if (!_isLoaded)
+                return;
+
+            var mes = await _http.GetAsync(trackerSource);
+            if (!mes.IsSuccessStatusCode)
+            {
+                MessageBox.Show("地址请求失败");
+                return;
+            }
+
+            string content = await mes.Content.ReadAsStringAsync();
+            var list = content.Split('\n').Where(s => !string.IsNullOrWhiteSpace(s)).Select(s => s.Trim()).ToList();
+            string tracker = string.Join(',', list);
+            SettingGroupList[4].Items[0].Value = tracker;
+            MessageBox.Show("完成更新");
+        }
+        
         public void Load(string filePath)
         {
             var options = new Dictionary<string, string>();
@@ -65,6 +90,8 @@ namespace Aria2Launcher.Services
 
                 SettingGroupList.Add(new SettingGroup("other", otherItems));
             }
+
+            _isLoaded = true;
         }
 
         public void Save()

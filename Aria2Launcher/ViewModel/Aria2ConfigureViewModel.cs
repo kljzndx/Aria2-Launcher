@@ -13,6 +13,8 @@ namespace Aria2Launcher.ViewModel
         {
             string json = File.ReadAllText("./Assets/Aria2ConfDoc.json");
             Aria2ConfService = new Aria2ConfService(json);
+            
+            UpdateTrackerCommand=new RelayCommand<string>(async s => await Aria2ConfService.UpdateTracker(s));
         }
         
         public Aria2ConfService Aria2ConfService { get; }
@@ -25,5 +27,7 @@ namespace Aria2Launcher.ViewModel
             get => _selectGroup;
             set => Set(ref _selectGroup, value);
         }
+
+        public RelayCommand<string> UpdateTrackerCommand { get; }
     }
 }

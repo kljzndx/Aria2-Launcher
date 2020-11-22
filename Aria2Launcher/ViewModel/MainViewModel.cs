@@ -25,7 +25,6 @@ namespace Aria2Launcher.ViewModel
         public ObservableCollection<string> OutputList => Aria2.OutputList;
         
         public RelayCommand BrowseAria2DirCommand { get; }
-        public RelayCommand UpgradeTrackerCommand { get; }
 
         public RelayCommand StartAria2Command { get; }
         public RelayCommand StopAria2Command { get; }
