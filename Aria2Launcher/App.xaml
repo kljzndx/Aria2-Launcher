@@ -6,7 +6,7 @@
              ShutdownMode="OnExplicitShutdown">
     
     <Application.Resources>
-        <tb:TaskbarIcon x:Key="taskbar" IconSource="logo.ico" DoubleClickCommand="{Binding ShowWindowCommand}">
+        <tb:TaskbarIcon x:Key="taskbar" IconSource="Assets/logo.ico" DoubleClickCommand="{Binding ShowWindowCommand}">
             <tb:TaskbarIcon.DataContext>
                 <vm:TaskBarViewModel/>
             </tb:TaskbarIcon.DataContext>
