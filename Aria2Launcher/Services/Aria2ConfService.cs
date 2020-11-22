@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,10 +14,10 @@ namespace Aria2Launcher.Services
 
         public Aria2ConfService(string docJson)
         {
-            SettingGroupList = JsonConvert.DeserializeObject<List<SettingGroup>>(docJson);
+            SettingGroupList = new ObservableCollection<SettingGroup>(JsonConvert.DeserializeObject<List<SettingGroup>>(docJson));
         }
 
-        public List<SettingGroup> SettingGroupList { get; }
+        public ObservableCollection<SettingGroup> SettingGroupList { get; }
 
         public void Load(string filePath)
         {
@@ -27,8 +28,14 @@ namespace Aria2Launcher.Services
 
             foreach (var line in lines)
             {
-                string[] option = line.Split('=');
-                options.Add(option[0].Trim(), option[1].Trim());
+                string str = line.Trim();
+                if (str.StartsWith('#'))
+                    continue;
+                
+                string[] option = str.Split('=');
+                
+                if (option.Length == 2)
+                    options.Add(option[0].Trim(), option[1].Trim());
             }
 
             // TODO 各种分类配置加载
