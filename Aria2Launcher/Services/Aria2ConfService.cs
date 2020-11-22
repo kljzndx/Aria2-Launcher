@@ -31,11 +31,17 @@ namespace Aria2Launcher.Services
                 string str = line.Trim();
                 if (str.StartsWith('#'))
                     continue;
+
+                List<string> option = str.Split('=').Select(s => s.Trim()).ToList();
+
+                if (option.Count < 2)
+                    continue;
+
+                string key = option.First();
+                option.RemoveAt(0);
+                string value = string.Join('=', option);
                 
-                string[] option = str.Split('=');
-                
-                if (option.Length == 2)
-                    options.Add(option[0].Trim(), option[1].Trim());
+                options.Add(key, value);
             }
 
             // TODO 各种分类配置加载
