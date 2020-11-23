@@ -16,7 +16,7 @@ namespace Aria2Launcher.ViewModel
 
             StartAria2Command = new RelayCommand(Aria2.StartAria2, () => !Aria2.IsRunning);
             StopAria2Command = new RelayCommand(Aria2.StopAria2, () => Aria2.IsRunning);
-            ShowConfigueCommand = new RelayCommand(() => new Aria2ConfigureWindow().Show());
+            ShowConfigureCommand = new RelayCommand(() => new Aria2ConfigureWindow().Show());
         }
 
         public ConfigurationService Configuration { get; } = ConfigurationService.Current;
@@ -28,7 +28,7 @@ namespace Aria2Launcher.ViewModel
 
         public RelayCommand StartAria2Command { get; }
         public RelayCommand StopAria2Command { get; }
-        public RelayCommand ShowConfigueCommand { get; }
+        public RelayCommand ShowConfigureCommand { get; }
 
         private string BrowseFolder()
         {
