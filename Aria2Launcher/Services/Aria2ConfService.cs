@@ -15,7 +15,8 @@ namespace Aria2Launcher.Services
     public class Aria2ConfService
     {
         private string _filePath;
-        private readonly HttpClient _http = new HttpClient();
+        private bool _isLoaded;
+        private HttpClient _http = new HttpClient();
 
         public Aria2ConfService(string docJson)
         {
@@ -26,6 +27,9 @@ namespace Aria2Launcher.Services
 
         public async Task UpdateTracker(string trackerSource)
         {
+            if (!_isLoaded)
+                return;
+
             var mes = await _http.GetAsync(trackerSource);
             if (!mes.IsSuccessStatusCode)
             {
@@ -69,25 +73,16 @@ namespace Aria2Launcher.Services
 
             foreach (var settingGroup in SettingGroupList.Select(g => g.Items))
             {
-                foreach (var setting in settingGroup)
+                foreach (var setting in settingGroup.Where(s => options.ContainsKey(s.Key)))
                 {
-                    if (options.ContainsKey(setting.Key))
-                    {
-                        setting.Value = options[setting.Key];
-                        options.Remove(setting.Key);
-                    }
-                    else if (setting.Value != setting.DefaultValue)
-                        setting.Value = setting.DefaultValue;
+                    setting.Value = options[setting.Key];
+                    options.Remove(setting.Key);
                 }
             }
 
             // 创建“其他”分组
             if (options.Any())
             {
-                var oldItem = SettingGroupList.FirstOrDefault(g => g.Name == "other");
-                if (oldItem != null)
-                    SettingGroupList.Remove(oldItem);
-                
                 var otherItems = new List<SettingItem>();
 
                 foreach (var option in options)
@@ -95,6 +90,8 @@ namespace Aria2Launcher.Services
 
                 SettingGroupList.Add(new SettingGroup("other", otherItems));
             }
+
+            _isLoaded = true;
         }
 
         public void Save() => Save(_filePath);
