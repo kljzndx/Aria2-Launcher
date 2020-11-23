@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +14,7 @@ namespace Aria2Launcher.Services
     public class Aria2ConfService
     {
         private string _filePath;
-        private bool _isLoaded;
-        private HttpClient _http = new HttpClient();
+        private readonly HttpClient _http = new HttpClient();
 
         public Aria2ConfService(string docJson)
         {
@@ -27,9 +25,6 @@ namespace Aria2Launcher.Services
 
         public async Task UpdateTracker(string trackerSource)
         {
-            if (!_isLoaded)
-                return;
-
             var mes = await _http.GetAsync(trackerSource);
             if (!mes.IsSuccessStatusCode)
             {
@@ -90,8 +85,6 @@ namespace Aria2Launcher.Services
 
                 SettingGroupList.Add(new SettingGroup("other", otherItems));
             }
-
-            _isLoaded = true;
         }
 
         public void Save() => Save(_filePath);
