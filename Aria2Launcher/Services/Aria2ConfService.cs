@@ -97,21 +97,19 @@ namespace Aria2Launcher.Services
             }
         }
 
-        public void Save()
+        public void Save() => Save(_filePath);
+        
+        public void Save(string filePath)
         {
-            var options = new Dictionary<string, string>();
+            StringBuilder builder = new StringBuilder();
 
             foreach (var settingGroup in SettingGroupList.Select(g => g.Items))
             {
                 foreach (var setting in settingGroup.Where(s => s.Value != s.DefaultValue))
-                    options.Add(setting.Key, setting.Value);
+                    builder.AppendLine(string.Concat(setting.Key, "=", setting.Value));
             }
 
-            StringBuilder builder = new StringBuilder();
-            foreach (var option in options)
-                builder.AppendLine(string.Concat(option.Key, "=", option.Value));
-
-            File.WriteAllText(_filePath, builder.ToString());
+            File.WriteAllText(filePath, builder.ToString());
         }
     }
 }
