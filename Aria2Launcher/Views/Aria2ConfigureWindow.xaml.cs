@@ -52,10 +52,5 @@ namespace Aria2Launcher.Views
         {
             this.Close();
         }
-
-        private void Selector_OnSelected(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }
