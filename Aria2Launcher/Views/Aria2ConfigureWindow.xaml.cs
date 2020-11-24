@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Aria2Launcher.Services;
 using Aria2Launcher.ViewModel;
 using Path = System.IO.Path;
 
@@ -31,7 +32,7 @@ namespace Aria2Launcher.Views
         private void Aria2ConfigureWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             string path = Path.Combine(_viewModel.AppConfService.Aria2DirPath, "aria2.conf");
-            if (File.Exists(path))
+            if (Aria2Service.Current.CheckConfExist())
             {
                 _viewModel.Aria2ConfService.Load(path);
             }
