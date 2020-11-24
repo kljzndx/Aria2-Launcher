@@ -75,7 +75,7 @@ namespace Aria2Launcher.Services
 
             if (!File.Exists(exePath))
             {
-                if (MessageBox.Show("找不到 aria2c.exe", "是否需要下载 Aria2", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("是否需要下载 Aria2", "找不到 aria2c.exe", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     using (var process = new Process())
                     {
@@ -96,7 +96,7 @@ namespace Aria2Launcher.Services
             
             if (!File.Exists(confPath))
             {
-                if (MessageBox.Show("找不到 aria2.conf", "是否需要创建 aria2.conf", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("是否需要创建 aria2.conf", "找不到 aria2.conf", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     File.WriteAllText(confPath, "enable-rpc=true");
                     return true;
