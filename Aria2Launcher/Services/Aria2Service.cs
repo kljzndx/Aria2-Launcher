@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Threading;
 
@@ -68,30 +69,72 @@ namespace Aria2Launcher.Services
             ErrorDataReceived?.Invoke(this, content);
         }
 
+        public bool CheckExeExist()
+        {
+            string exePath = Configuration.Aria2DirPath + "\\aria2c.exe";
+
+            if (!File.Exists(exePath))
+            {
+                if (MessageBox.Show("找不到 aria2c.exe", "是否需要下载 Aria2", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    using (var process = new Process())
+                    {
+                        process.StartInfo.FileName = "https://github.com/aria2/aria2/releases/latest";
+                        process.StartInfo.UseShellExecute = true;
+                        process.Start();
+                    }
+                }
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool CheckConfExist()
+        {
+            string confPath = Configuration.Aria2DirPath + "\\aria2.conf";
+            
+            if (!File.Exists(confPath))
+            {
+                if (MessageBox.Show("找不到 aria2.conf", "是否需要创建 aria2.conf", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    File.WriteAllText(confPath, "enable-rpc=true");
+                    return true;
+                }
+                return false;
+            }
+
+            return true;
+        }
+
         private bool SetupProcess()
         {
             string exePath = Configuration.Aria2DirPath + "\\aria2c.exe";
             string confPath = Configuration.Aria2DirPath + "\\aria2.conf";
 
-            if (File.Exists(exePath))
+            if (CheckExeExist())
+            {
+                _aria2Process.StartInfo.FileName = exePath;
+                _aria2Process.StartInfo.WorkingDirectory = Configuration.Aria2DirPath;
+
                 Log("已找到 aria2c.exe");
+            }
             else
             {
                 LogError("未找到 aria2c.exe");
                 return false;
             }
-            
-            if (File.Exists(confPath))
+
+            if (CheckConfExist())
+            {
+                _aria2Process.StartInfo.Arguments = $"--conf-path {confPath}";
                 Log("已找到 aria2.conf");
+            }
             else
             {
-                LogError("未找到 aria2.conf");
-                return false;
+                _aria2Process.StartInfo.Arguments = $"--enable-rpc";
+                LogError("未找到 aria2.conf，正在手动启用 rpc 服务");
             }
-            
-            _aria2Process.StartInfo.FileName = exePath;
-            _aria2Process.StartInfo.Arguments = $"--conf-path {confPath}";
-            _aria2Process.StartInfo.WorkingDirectory = Configuration.Aria2DirPath;
             
             return true;
         }
