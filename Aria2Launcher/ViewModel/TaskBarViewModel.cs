@@ -31,6 +31,8 @@ namespace Aria2Launcher.ViewModel
             });
 
             AutoStartCommand = new RelayCommand<bool>(SwitchAutoStart);
+            
+            Aria2.Aria2Exited += Aria2Service_OnAria2Exited;
         }
 
         public Aria2Service Aria2 { get; } = Aria2Service.Current;
@@ -79,6 +81,12 @@ namespace Aria2Launcher.ViewModel
                 return;
 
             CreateShortcut(lnkPath);
+        }
+
+        private void Aria2Service_OnAria2Exited(object sender, EventArgs e)
+        {
+            StartAria2Command.RaiseCanExecuteChanged();
+            StopAria2Command.RaiseCanExecuteChanged();
         }
     }
 }

@@ -16,6 +16,8 @@ namespace Aria2Launcher.ViewModel
             StartAria2Command = new RelayCommand(Aria2.StartAria2, () => !Aria2.IsRunning);
             StopAria2Command = new RelayCommand(Aria2.StopAria2, () => Aria2.IsRunning);
             ShowConfigureCommand = new RelayCommand(() => new Aria2ConfigureWindow().Show());
+            
+            Aria2.Aria2Exited += Aria2Service_OnAria2Exited;
         }
 
         public ConfigurationService Configuration { get; } = ConfigurationService.Current;
@@ -36,6 +38,12 @@ namespace Aria2Launcher.ViewModel
                 var dialogResult = picker.ShowDialog();
                 return dialogResult == DialogResult.OK ? picker.SelectedPath : Configuration.Aria2DirPath;
             }
+        }
+
+        private void Aria2Service_OnAria2Exited(object sender, EventArgs e)
+        {
+            StartAria2Command.RaiseCanExecuteChanged();
+            StopAria2Command.RaiseCanExecuteChanged();
         }
     }
 }

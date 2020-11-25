@@ -16,6 +16,7 @@ namespace Aria2Launcher.Services
         private readonly Process _aria2Process;
 
         public event EventHandler<string> ErrorDataReceived;
+        public event EventHandler Aria2Exited;
 
         static Aria2Service()
         {
@@ -178,6 +179,7 @@ namespace Aria2Launcher.Services
 
                 IsRunning = false;
                 Log("Aria2 已退出");
+                Aria2Exited?.Invoke(this, EventArgs.Empty);
             });
         }
     }
