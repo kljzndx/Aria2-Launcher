@@ -12,8 +12,8 @@
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            
-            <tb:TaskbarIcon x:Key="taskbar" IconSource="Assets/logo.ico" DoubleClickCommand="{Binding ShowWindowCommand}">
+
+            <tb:TaskbarIcon x:Key="taskbar" IconSource="Resources/logo.ico" DoubleClickCommand="{Binding ShowWindowCommand}">
                 <tb:TaskbarIcon.DataContext>
                     <vm:TaskBarViewModel/>
                 </tb:TaskbarIcon.DataContext>

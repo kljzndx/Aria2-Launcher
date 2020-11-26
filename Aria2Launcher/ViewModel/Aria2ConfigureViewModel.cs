@@ -11,7 +11,7 @@ namespace Aria2Launcher.ViewModel
     {
         public Aria2ConfigureViewModel()
         {
-            string json = File.ReadAllText("./Assets/Aria2ConfDoc.json");
+            string json = File.ReadAllText("./Aria2ConfDoc.json");
             Aria2ConfService = new Aria2ConfService(json);
             
             UpdateTrackerCommand=new RelayCommand<string>(async s => await Aria2ConfService.UpdateTracker(s));

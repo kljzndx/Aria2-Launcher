@@ -4,11 +4,11 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>Assets/logo.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Aria2ConfDoc.json" />
+    <None Remove="Resources\Aria2ConfDoc.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,10 +40,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\Aria2ConfDoc.json">
+    <Content Include="Aria2ConfDoc.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Assets\logo.ico" />
+    <Resource Include="Resources\logo.ico" />
   </ItemGroup>
 
 </Project>
