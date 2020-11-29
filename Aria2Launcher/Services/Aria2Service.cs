@@ -3,8 +3,14 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
+
+using Aria2Launcher.Models;
+using Aria2Launcher.Resources;
+
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Threading;
+
+using ObservableObject = GalaSoft.MvvmLight.ObservableObject;
 
 namespace Aria2Launcher.Services
 {
@@ -76,7 +82,7 @@ namespace Aria2Launcher.Services
 
             if (!File.Exists(exePath))
             {
-                if (MessageBox.Show("是否需要下载 Aria2", "找不到 aria2c.exe", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show(StringResource.Err_DownloadAria2, StringResource.Err_NoAria2Exe, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     using (var process = new Process())
                     {
@@ -97,7 +103,7 @@ namespace Aria2Launcher.Services
             
             if (!File.Exists(confPath))
             {
-                if (MessageBox.Show("是否需要创建 aria2.conf", "找不到 aria2.conf", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show(StringResource.Err_BuildConf, StringResource.Err_NoAria2Conf, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     File.WriteAllText(confPath, "enable-rpc=true");
                     return true;
@@ -118,23 +124,23 @@ namespace Aria2Launcher.Services
                 _aria2Process.StartInfo.FileName = exePath;
                 _aria2Process.StartInfo.WorkingDirectory = Configuration.Aria2DirPath;
 
-                Log("已找到 aria2c.exe");
+                Log(StringResource.Log_FindAria2Exe);
             }
             else
             {
-                LogError("未找到 aria2c.exe");
+                LogError(StringResource.Err_NoAria2Exe);
                 return false;
             }
 
             if (CheckConfExist())
             {
                 _aria2Process.StartInfo.Arguments = $"--conf-path {confPath}";
-                Log("已找到 aria2.conf");
+                Log(StringResource.Log_FindAria2Conf);
             }
             else
             {
                 _aria2Process.StartInfo.Arguments = $"--enable-rpc";
-                LogError("未找到 aria2.conf，正在手动启用 rpc 服务");
+                LogError(StringResource.Err_NoAria2Conf + ", " + StringResource.Log_Aria2RpcMode);
             }
             
             return true;

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:Aria2Launcher.ViewModel"
+        xmlns:resource="clr-namespace:Aria2Launcher.Resources"
         mc:Ignorable="d"
         Title="Aria2 Launcher" Width="800" Height="450"
         StateChanged="Window_StateChanged" Closed="Window_Closed">
@@ -20,7 +21,7 @@
 
         <StackPanel>
             <StackPanel>
-                <TextBlock Text="Aria2 文件夹路径"/>
+                <TextBlock Text="{Binding Source={StaticResource R}, Path=Strings.Aria2Dir}"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -28,7 +29,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBox x:Name="Aria2DirPath_TextBox" Text="{Binding Configuration.Aria2DirPath, Mode=TwoWay}"/>
-                    <Button x:Name="Aria2DirPathBrowse_Button" Grid.Column="1" Command="{Binding BrowseAria2DirCommand}" Content="浏览"/>
+                    <Button x:Name="Aria2DirPathBrowse_Button" Grid.Column="1" Command="{Binding BrowseAria2DirCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.Browse}"/>
                 </Grid>
             </StackPanel>
             
@@ -39,9 +40,9 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="StartAria2_Button" Command="{Binding StartAria2Command}" Content="启动 Aria2"/>
-                <Button x:Name="StopAria2_Button" Grid.Column="1" Command="{Binding StopAria2Command}" Content="停止 Aria2"/>
-                <Button x:Name="ConfigureAria2_Button" Grid.Column="2" Command="{Binding ShowConfigureCommand}" Content="Aria2 配置面板"/>
+                <Button x:Name="StartAria2_Button" Command="{Binding StartAria2Command}" Content="{Binding Source={StaticResource R}, Path=Strings.StartAria2}"/>
+                <Button x:Name="StopAria2_Button" Grid.Column="1" Command="{Binding StopAria2Command}" Content="{Binding Source={StaticResource R}, Path=Strings.StopAria2}"/>
+                <Button x:Name="ConfigureAria2_Button" Grid.Column="2" Command="{Binding ShowConfigureCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.Aria2Configure}"/>
             </Grid>
         </StackPanel>
 

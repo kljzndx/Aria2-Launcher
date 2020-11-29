@@ -38,7 +38,6 @@ namespace Aria2Launcher.Views
             }
             else
             {
-                MessageBox.Show("找不到 aria2.conf 文件");
                 this.Close();
             }
         }

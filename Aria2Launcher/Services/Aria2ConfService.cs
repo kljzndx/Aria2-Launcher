@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Aria2Launcher.Models.SettingModels;
+using Aria2Launcher.Resources;
+
 using Newtonsoft.Json;
 
 namespace Aria2Launcher.Services
@@ -28,7 +30,7 @@ namespace Aria2Launcher.Services
             var mes = await _http.GetAsync(trackerSource);
             if (!mes.IsSuccessStatusCode)
             {
-                MessageBox.Show("地址请求失败");
+                MessageBox.Show(StringResource.Err_GetTracker + mes.StatusCode.ToString());
                 return;
             }
 
@@ -36,7 +38,7 @@ namespace Aria2Launcher.Services
             var list = content.Split('\n').Where(s => !string.IsNullOrWhiteSpace(s)).Select(s => s.Trim()).ToList();
             string tracker = string.Join(',', list);
             SettingGroupList[4].Items[0].Value = tracker;
-            MessageBox.Show("完成更新");
+            MessageBox.Show(StringResource.Log_TrackerUpdated);
         }
         
         public void Load(string filePath)

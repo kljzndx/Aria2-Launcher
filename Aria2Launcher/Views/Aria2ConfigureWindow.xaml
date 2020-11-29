@@ -28,9 +28,9 @@
             
             <DataGrid Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding SelectGroup.Items}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="名称" Binding="{Binding Name}" IsReadOnly="True"/>
-                    
-                    <DataGridTemplateColumn Header="值" MinWidth="100">
+                    <DataGridTextColumn Header="{Binding Source={StaticResource R}, Path=Strings.Aria2Conf_Column_Name}" Binding="{Binding Name}" IsReadOnly="True"/>
+
+                    <DataGridTemplateColumn Header="{Binding Source={StaticResource R}, Path=Strings.Aria2Conf_Column_Value}" MinWidth="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="{x:Type model:SettingItem}">
                                 <TextBlock Text="{Binding Value}"/>
@@ -42,8 +42,8 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
-                    
-                    <DataGridTextColumn Header="注释" IsReadOnly="True" Binding="{Binding Description}"/>
+
+                    <DataGridTextColumn Header="{Binding Source={StaticResource R}, Path=Strings.Aria2Conf_Column_Comment}" IsReadOnly="True" Binding="{Binding Description}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
@@ -59,14 +59,14 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                
-                <TextBlock Text="BT Tracker 更新地址：" VerticalAlignment="Center"/>
+
+                <TextBlock Text="{Binding Source={StaticResource R}, Path=Strings.BtTrackerSource}" VerticalAlignment="Center"/>
                 <TextBox Grid.Column="1" Text="{Binding AppConfService.TrackerSource}"/>
-                <Button Grid.Column="2" Content="立即更新" Command="{Binding UpdateTrackerCommand}" CommandParameter="{Binding AppConfService.TrackerSource}"/>
+                <Button Grid.Column="2" Content="{Binding Source={StaticResource R}, Path=Strings.UpdateTracker}" Command="{Binding UpdateTrackerCommand}" CommandParameter="{Binding AppConfService.TrackerSource}"/>
             </Grid>
             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <Button x:Name="Ok_Button" Content="确定" Click="Ok_Button_OnClick"/>
-                <Button x:Name="Cancel_Button" Content="取消" Click="Cancel_Button_OnClick"/>
+                <Button x:Name="Ok_Button" Content="{Binding Source={StaticResource R}, Path=Strings.Ok}" Click="Ok_Button_OnClick"/>
+                <Button x:Name="Cancel_Button" Content="{Binding Source={StaticResource R}, Path=Strings.Cancel}" Click="Cancel_Button_OnClick"/>
             </StackPanel>
         </Grid>
     </Grid>
