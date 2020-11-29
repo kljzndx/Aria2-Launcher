@@ -103,9 +103,6 @@ namespace Aria2Launcher.Services
 
             var text = JsonConvert.SerializeObject(this);
             File.WriteAllText(confPath, text);
-
-            Debug.WriteLine($"caller: {propertyName}, Built json: {text}");
-
         }
     }
 }
