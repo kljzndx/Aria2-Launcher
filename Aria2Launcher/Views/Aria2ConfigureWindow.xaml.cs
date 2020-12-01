@@ -31,10 +31,10 @@ namespace Aria2Launcher.Views
 
         private void Aria2ConfigureWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            string path = Path.Combine(_viewModel.AppConfService.Aria2DirPath, "aria2.conf");
+            string path = Path.Combine(ConfigurationService.Current.Aria2DirPath, "aria2.conf");
             if (Aria2Service.Current.CheckConfExist())
             {
-                _viewModel.Aria2ConfService.Load(path);
+                _viewModel.Load(path);
             }
             else
             {
@@ -44,7 +44,7 @@ namespace Aria2Launcher.Views
 
         private void Ok_Button_OnClick(object sender, RoutedEventArgs e)
         {
-            _viewModel.Aria2ConfService.Save();
+            _viewModel.Save();
             this.Close();
         }
 
