@@ -20,7 +20,12 @@ namespace Aria2Launcher.ViewModel
             string json = File.ReadAllText("./Aria2ConfDoc.json");
             _aria2ConfService = new Aria2ConfService(json);
             
-            UpdateTrackerCommand = new RelayCommand<string>(async s => await _aria2ConfService.UpdateTracker(s));
+            UpdateTrackerCommand = new RelayCommand<string>(async s => await _aria2ConfService.UpdateTracker(s),
+                s => {
+                    if (s != null)
+                        return s.StartsWith("http");
+                    return false;
+                });
         }
 
         public ConfigurationService AppConfService => ConfigurationService.Current;
