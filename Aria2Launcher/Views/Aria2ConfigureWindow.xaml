@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:Aria2Launcher.ViewModel"
         xmlns:model="clr-namespace:Aria2Launcher.Models.SettingModels"
         mc:Ignorable="d"
-        Title="Aria2 Configure" Height="450" Width="800"
+        Title="Aria2 Configure" Height="450" Width="1000"
         Loaded="Aria2ConfigureWindow_OnLoaded">
     
     <Window.DataContext>
@@ -28,9 +28,10 @@
             
             <DataGrid Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding SelectGroup.Items}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="{Binding Source={StaticResource R}, Path=Strings.Aria2Conf_Column_Name}" Binding="{Binding Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Width="200" Header="{Binding Source={StaticResource R}, Path=Strings.Aria2Conf_Column_Name}" Binding="{Binding Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Width="150" Header="key" Binding="{Binding Key}" IsReadOnly="True"/>
 
-                    <DataGridTemplateColumn Header="{Binding Source={StaticResource R}, Path=Strings.Aria2Conf_Column_Value}" MinWidth="100">
+                    <DataGridTemplateColumn Width="150" Header="{Binding Source={StaticResource R}, Path=Strings.Aria2Conf_Column_Value}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="{x:Type model:SettingItem}">
                                 <TextBlock Text="{Binding Value}"/>
@@ -43,7 +44,13 @@
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Header="{Binding Source={StaticResource R}, Path=Strings.Aria2Conf_Column_Comment}" IsReadOnly="True" Binding="{Binding Description}"/>
+                    <DataGridTextColumn Width="250" Header="{Binding Source={StaticResource R}, Path=Strings.Aria2Conf_Column_Comment}" IsReadOnly="True" Binding="{Binding Description}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
