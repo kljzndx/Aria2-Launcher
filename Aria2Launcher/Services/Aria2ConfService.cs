@@ -95,9 +95,15 @@ namespace Aria2Launcher.Services
         {
             StringBuilder builder = new StringBuilder();
 
-            foreach (var settingGroup in SettingGroupList.Select(g => g.Items))
+            foreach (var settingGroup in SettingGroupList)
             {
-                foreach (var setting in settingGroup.Where(s => s.Value != s.DefaultValue))
+                var list = settingGroup.Items.Where(s => s.Value != s.DefaultValue).ToList();
+                if (!list.Any())
+                    continue;
+
+                builder.AppendLine($"## {settingGroup.Name} ##");
+
+                foreach (var setting in list)
                     builder.AppendLine(string.Concat(setting.Key, "=", setting.Value));
             }
 
