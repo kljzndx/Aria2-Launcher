@@ -23,6 +23,8 @@ namespace Aria2Launcher.ViewModel
             UpdateTrackerCommand = new RelayCommand<string>(async s => await _aria2ConfService.UpdateTracker(s));
         }
 
+        public ConfigurationService AppConfService => ConfigurationService.Current;
+
         public SettingGroup SelectGroup
         {
             get => _selectGroup;
