@@ -9,7 +9,6 @@ namespace Aria2Launcher.Models.SettingModels
 
         public SettingItem(string key, string value)
         {
-            Name = key;
             Key = key;
             _value = value;
         }
