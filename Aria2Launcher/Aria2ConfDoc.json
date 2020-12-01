@@ -11,7 +11,7 @@
     ]
   },
   {
-    "name": "文件保存",
+    "name": "文件保存/File save",
     "items": [
       { "name": "下载目录", "description": "", "key": "dir", "defaultValue": "", "optionList": [""] },
       { "name": "磁盘缓存大小", "description": "", "key": "disk-cache", "defaultValue": "16M", "optionList": ["8M","16M","32M","64M"] },
@@ -24,7 +24,7 @@
     ]
   },
   {
-    "name": "进度保存",
+    "name": "进度保存/Session",
     "items": [
       { "name": "会话文件导入路径", "description": "", "key": "input-file", "defaultValue": "", "optionList": ["./aria2.session"] },
       { "name": "会话文件保存路径", "description": "", "key": "save-session", "defaultValue": "", "optionList": ["./aria2.session"] },
@@ -34,7 +34,7 @@
     ]
   },
   {
-    "name": "下载连接",
+    "name": "下载连接/Connection",
     "items": [
       { "name": "文件未找到重试次数", "description": "0 为禁用", "key": "max-file-not-found", "defaultValue": "0", "optionList": ["0","1","5","10"] },
       { "name": "最大尝试次数", "description": "0 为无限", "key": "max-tries", "defaultValue": "5", "optionList": ["0","1","5","10"] },
@@ -61,7 +61,24 @@
     ]
   },
   {
-    "name": "BT 下载",
+    "name": "客户端信息/Client info",
+    "items": [
+      { "name": "User Agent", "description": "", "key": "user-agent", "defaultValue": "", "optionList": ["qBittorrent/4.2.5","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4160.0 Safari/537.36 Edge/85.0.537.0"] },
+      { "name": "Peer Agent", "description": "", "key": "peer-agent", "defaultValue": "", "optionList": ["qBittorrent/4.2.5"] },
+      { "name": "Peer Id Prefix", "description": "", "key": "peer-id-prefix", "defaultValue": "", "optionList": ["-qB4250-"] }
+    ]
+  },
+  {
+    "name": "日志/Logging",
+    "items": [
+      { "name": "文件保存路径", "description": "设置为空为不保存", "key": "log", "defaultValue": "", "optionList": ["./aria2.log"] },
+      { "name": "日志级别", "description": "", "key": "log-level", "defaultValue": "debug", "optionList": ["debug","info","notice","warn","error"] },
+      { "name": "控制台日志级别", "description": "", "key": "console-log-level", "defaultValue": "notice", "optionList": ["debug","info","notice","warn","error"] },
+      { "name": "禁用控制台日志", "description": "", "key": "quiet", "defaultValue": "false", "optionList": ["true","false"] }
+    ]
+  },
+  {
+    "name": "BT",
     "items": [
       { "name": "Tracker 列表", "description": "地址分割符为英文逗号", "key": "bt-tracker", "defaultValue": "", "optionList": [""] },
       { "name": "BT 监听端口(TCP)", "description": "若不指定则端口随机", "key": "listen-port", "defaultValue": "", "optionList": ["6881","6999"] },
@@ -94,23 +111,6 @@
       { "name": "删除 BT 下载任务中未选择文件", "description": "", "key": "bt-remove-unselected-file", "defaultValue": "false", "optionList": ["true","false"] },
       { "name": "BT强制加密", "description": "", "key": "bt-force-encryption", "defaultValue": "false", "optionList": ["true","false"] },
       { "name": "分离仅做种任务", "description": "", "key": "bt-detach-seed-only", "defaultValue": "false", "optionList": ["true","false"] }
-    ]
-  },
-  {
-    "name": "客户端伪装",
-    "items": [
-      { "name": "User Agent", "description": "", "key": "user-agent", "defaultValue": "", "optionList": ["qBittorrent/4.2.5","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4160.0 Safari/537.36 Edge/85.0.537.0"] },
-      { "name": "Peer Agent", "description": "", "key": "peer-agent", "defaultValue": "", "optionList": ["qBittorrent/4.2.5"] },
-      { "name": "Peer Id Prefix", "description": "", "key": "peer-id-prefix", "defaultValue": "", "optionList": ["-qB4250-"] }
-    ]
-  },
-  {
-    "name": "日志",
-    "items": [
-      { "name": "文件保存路径", "description": "设置为空为不保存", "key": "log", "defaultValue": "", "optionList": ["./aria2.log"] },
-      { "name": "日志级别", "description": "", "key": "log-level", "defaultValue": "debug", "optionList": ["debug","info","notice","warn","error"] },
-      { "name": "控制台日志级别", "description": "", "key": "console-log-level", "defaultValue": "notice", "optionList": ["debug","info","notice","warn","error"] },
-      { "name": "禁用控制台日志", "description": "", "key": "quiet", "defaultValue": "false", "optionList": ["true","false"] }
     ]
   }
 ]
