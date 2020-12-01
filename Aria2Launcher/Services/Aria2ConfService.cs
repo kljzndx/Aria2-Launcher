@@ -102,9 +102,22 @@ namespace Aria2Launcher.Services
                     continue;
 
                 builder.AppendLine($"## {settingGroup.Name} ##");
+                builder.AppendLine();
 
                 foreach (var setting in list)
+                {
+                    if (!string.IsNullOrWhiteSpace(setting.Name))
+                    {
+                        string comment = setting.Name;
+                        if (!string.IsNullOrWhiteSpace(setting.Description))
+                            comment += ", " + setting.Description.Replace("\n","\n# ");
+
+                        builder.AppendLine("# " + comment);
+                    }
+
                     builder.AppendLine(string.Concat(setting.Key, "=", setting.Value));
+                    builder.AppendLine();
+                }
             }
 
             File.WriteAllText(filePath, builder.ToString());
