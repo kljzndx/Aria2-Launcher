@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Windows;
 
 using Aria2Launcher.Models;
@@ -142,6 +143,9 @@ namespace Aria2Launcher.Services
                 _aria2Process.StartInfo.Arguments = $"--enable-rpc";
                 LogError(StringResource.Err_NoAria2Conf + ", " + StringResource.Log_Aria2RpcMode);
             }
+
+            _aria2Process.StartInfo.StandardOutputEncoding = Encoding.UTF8;
+            _aria2Process.StartInfo.StandardErrorEncoding = Encoding.UTF8;
             
             return true;
         }
