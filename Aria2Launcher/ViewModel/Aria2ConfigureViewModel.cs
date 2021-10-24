@@ -7,6 +7,7 @@ using Aria2Launcher.Models.SettingModels;
 using Aria2Launcher.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Aria2Launcher.ViewModel
 {
@@ -46,6 +47,10 @@ namespace Aria2Launcher.ViewModel
             SelectGroup = SettingGroupList.FirstOrDefault();
         }
 
-        public void Save() => _aria2ConfService.Save();
+        public void Save()
+        {
+            _aria2ConfService.Save();
+            Messenger.Default.Send<object>(null, "RestartAria2");
+        }
     }
 }

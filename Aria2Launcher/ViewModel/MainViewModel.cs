@@ -5,11 +5,14 @@ using Aria2Launcher.Services;
 using Aria2Launcher.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Aria2Launcher.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+        private bool _needRestart;
+        
         public MainViewModel()
         {
             BrowseAria2DirCommand = new RelayCommand(() => Configuration.Aria2DirPath = BrowseFolder());
@@ -18,6 +21,14 @@ namespace Aria2Launcher.ViewModel
             ShowConfigureCommand = new RelayCommand(() => new Aria2ConfigureWindow().Show());
             
             Aria2.Aria2Exited += Aria2Service_OnAria2Exited;
+            Messenger.Default.Register<object>(this, "RestartAria2", m =>
+            {
+                if (!Aria2.IsRunning)
+                    return;
+
+                _needRestart = true;
+                Aria2.StopAria2();
+            });
         }
 
         public ConfigurationService Configuration { get; } = ConfigurationService.Current;
@@ -42,6 +53,13 @@ namespace Aria2Launcher.ViewModel
 
         private void Aria2Service_OnAria2Exited(object sender, EventArgs e)
         {
+            if (_needRestart)
+            {
+                _needRestart = false;
+                Aria2.StartAria2();
+                return;
+            }
+            
             StartAria2Command.RaiseCanExecuteChanged();
             StopAria2Command.RaiseCanExecuteChanged();
         }
