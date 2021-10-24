@@ -63,9 +63,9 @@
   {
     "name": "客户端信息/Client info",
     "items": [
-      { "name": "User Agent", "description": "", "key": "user-agent", "defaultValue": "", "optionList": ["qBittorrent/4.2.5","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4160.0 Safari/537.36 Edge/85.0.537.0"] },
-      { "name": "Peer Agent", "description": "", "key": "peer-agent", "defaultValue": "", "optionList": ["qBittorrent/4.2.5"] },
-      { "name": "Peer Id Prefix", "description": "", "key": "peer-id-prefix", "defaultValue": "", "optionList": ["-qB4250-"] }
+      { "name": "User Agent", "description": "", "key": "user-agent", "defaultValue": "", "optionList": ["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36 Edg/95.0.1020.30","Deluge 1.3.15"] },
+      { "name": "Peer Agent", "description": "", "key": "peer-agent", "defaultValue": "", "optionList": ["Deluge 1.3.15"] },
+      { "name": "Peer Id Prefix", "description": "", "key": "peer-id-prefix", "defaultValue": "", "optionList": ["-DE13F0-"] }
     ]
   },
   {
