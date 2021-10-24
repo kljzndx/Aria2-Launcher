@@ -74,7 +74,7 @@
       { "name": "文件保存路径", "description": "设置为空为不保存", "key": "log", "defaultValue": "", "optionList": ["./aria2.log"] },
       { "name": "日志级别", "description": "", "key": "log-level", "defaultValue": "debug", "optionList": ["debug","info","notice","warn","error"] },
       { "name": "控制台日志级别", "description": "", "key": "console-log-level", "defaultValue": "notice", "optionList": ["debug","info","notice","warn","error"] },
-      { "name": "禁用控制台日志", "description": "", "key": "quiet", "defaultValue": "false", "optionList": ["true","false"] }
+      { "name": "静默模式", "description": "禁用控制台输出", "key": "quiet", "defaultValue": "false", "optionList": ["true","false"] }
     ]
   },
   {
