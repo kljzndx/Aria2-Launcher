@@ -51,7 +51,7 @@ namespace Aria2Launcher
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             ServiceCollection sc = new ServiceCollection();
-            sc.AddSingleton<AppConfigService>();
+            sc.AddSingleton<IAppConfigService, AppConfigService>();
             sc.AddSingleton<MainViewModel>();
 
             Ioc.Default.ConfigureServices(sc.BuildServiceProvider());
@@ -60,6 +60,6 @@ namespace Aria2Launcher
             m_window.Activate();
         }
 
-        private Window m_window;
+        private Window? m_window;
     }
 }

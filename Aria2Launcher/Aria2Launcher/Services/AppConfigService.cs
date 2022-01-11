@@ -11,7 +11,7 @@ using Windows.Storage;
 
 namespace Aria2Launcher.Services
 {
-    public class AppConfigService : ObservableObject
+    public class AppConfigService : ObservableObject, IAppConfigService
     {
         private ApplicationDataContainer _settings;
 
