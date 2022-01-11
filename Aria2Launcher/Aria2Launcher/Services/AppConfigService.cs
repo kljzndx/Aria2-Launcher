@@ -15,19 +15,19 @@ namespace Aria2Launcher.Services
     {
         private ApplicationDataContainer _settings;
 
-        private string _workingDir;
+        private string _programDir;
 
         public AppConfigService()
         {
             _settings = ApplicationData.Current.LocalSettings;
 
-            _workingDir = GetSetting(nameof(WorkingDir), "");
+            _programDir = GetSetting(nameof(ProgramDir), "");
         }
 
-        public string WorkingDir
+        public string ProgramDir
         {
-            get { return _workingDir; }
-            set { SetSetting(ref _workingDir, value); }
+            get { return _programDir; }
+            set { SetSetting(ref _programDir, value); }
         }
 
         private T GetSetting<T>(string settingName, T defaultValue)
