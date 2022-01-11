@@ -7,9 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid DataContext="{StaticResource locator}">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="myButton" Click="myButton_Click">Click me</Button>
-        </StackPanel>
+    <Grid DataContext="{Binding Source={StaticResource locator},Path=Main}">
+        
     </Grid>
 </Window>
