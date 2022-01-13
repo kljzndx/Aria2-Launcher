@@ -11,6 +11,18 @@ namespace Aria2Launcher.ViewModels
 {
     public class ViewModelLocator
     {
-        public MainViewModel Main => Ioc.Default.GetRequiredService<MainViewModel>();
+        private Dictionary<Type, IViewModel> Cache = new ();
+
+        public MainViewModel Main => GetViewModel<MainViewModel>();
+
+        private T GetViewModel<T>() where T : class, IViewModel, new()
+        {
+            if (Cache.ContainsKey(typeof(T)))
+                return (T) Cache[typeof(T)];
+
+            T vm = new T();
+            Cache.Add(typeof(T), vm);
+            return vm;
+        }
     }
 }

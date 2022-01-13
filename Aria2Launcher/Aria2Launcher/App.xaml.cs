@@ -52,7 +52,7 @@ namespace Aria2Launcher
         {
             ServiceCollection sc = new ServiceCollection();
             sc.AddSingleton<IAppConfigService, AppConfigService>();
-            sc.AddSingleton<MainViewModel>();
+            sc.AddSingleton((ViewModelLocator) this.Resources["locator"]);
 
             Ioc.Default.ConfigureServices(sc.BuildServiceProvider());
 

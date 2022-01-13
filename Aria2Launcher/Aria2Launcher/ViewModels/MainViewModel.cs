@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Aria2Launcher.ViewModels
 {
-    public class MainViewModel : ObservableObject
+    public class MainViewModel : ObservableObject, IViewModel
     {
         public ObservableCollection<string> Logs { get; } = new ObservableCollection<string>();
     }
