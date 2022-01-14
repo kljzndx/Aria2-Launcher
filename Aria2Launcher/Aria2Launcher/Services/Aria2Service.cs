@@ -23,9 +23,9 @@ namespace Aria2Launcher.Services
 
         public event EventHandler<string>? Outputed;
 
-        public Aria2Service()
+        public Aria2Service(IAppConfigService appConfig)
         {
-            _appConfig = Ioc.Default.GetRequiredService<IAppConfigService>();
+            _appConfig = appConfig;
         }
 
         public bool IsStarting
