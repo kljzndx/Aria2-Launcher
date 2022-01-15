@@ -76,6 +76,7 @@ namespace Aria2Launcher.Services
             _aria2Process.StartInfo.Arguments = "--conf-path ./" + ConfName;
             _aria2Process.EnableRaisingEvents = true;
             _aria2Process.StartInfo.UseShellExecute = false;
+            _aria2Process.StartInfo.CreateNoWindow = true;
 
             _aria2Process.StartInfo.RedirectStandardOutput = true;
             _aria2Process.StartInfo.RedirectStandardError = true;
