@@ -7,7 +7,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid DataContext="{Binding Source={StaticResource locator},Path=Main}">
+    <Grid DataContext="{Binding Source={StaticResource locator}, Path=Main}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBox Text="{Binding AppConfig.ProgramDir, Mode=TwoWay}"/>
         
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Command="{Binding StartAria2Command}">启动 Aria2</Button>
+            <Button Grid.Column="1" Command="{Binding StopAria2Command}">停止 Aria2</Button>
+        </Grid>
+        
+        <ListView Grid.Row="2" ItemsSource="{Binding Logs, Mode=OneWay}"/>
     </Grid>
 </Window>

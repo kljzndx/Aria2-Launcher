@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.DependencyInjection;
+﻿using Aria2Launcher.ViewModels;
+
+using CommunityToolkit.Mvvm.DependencyInjection;
 
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
@@ -16,6 +18,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -32,11 +35,26 @@ namespace Aria2Launcher
     public sealed partial class MainWindow : Window
     {
         private AppWindow _;
+        private MainViewModel _vm;
 
         public MainWindow()
         {
             this.InitializeComponent();
             _ = AppWindow.GetFromWindowId(Win32Interop.GetWindowIdFromWindow(WindowNative.GetWindowHandle(this)));
+            _vm = Ioc.Default.GetRequiredService<MainViewModel>();
+
+            _.Destroying += __Destroying;
+            _vm.Aria2.Outputed += Aria2_Outputed;
+        }
+
+        private void Aria2_Outputed(object? sender, string e)
+        {
+            this.DispatcherQueue?.TryEnqueue(() => _vm.AddLog(e));
+        }
+
+        private void __Destroying(AppWindow sender, object args)
+        {
+            _vm.Aria2.Outputed -= Aria2_Outputed;
         }
     }
 }
