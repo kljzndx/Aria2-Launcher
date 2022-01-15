@@ -40,7 +40,10 @@ namespace Aria2Launcher.Services
 
         private void Log(string? content)
         {
-            Outputed?.Invoke(this, content ?? "");
+            if (string.IsNullOrWhiteSpace(content))
+                return;
+
+            Outputed?.Invoke(this, content);
         }
 
         private void LogWithTime(string? content)
