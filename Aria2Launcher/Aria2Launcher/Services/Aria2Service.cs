@@ -60,6 +60,16 @@ namespace Aria2Launcher.Services
 
         public void StartAria2()
         {
+            if (!CheckExeExist())
+                LogWithTime($"找不到 {ExeName} 文件");
+            else if (!CheckConfExist())
+                LogWithTime($"找不到 {ConfName} 文件");
+            else
+                StartAria2Core();
+        }
+
+        private void StartAria2Core()
+        {
             _aria2Process = new Process();
             _aria2Process.StartInfo.WorkingDirectory = _appConfig.ProgramDir;
             _aria2Process.StartInfo.FileName = GetPath(ExeName);
