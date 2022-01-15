@@ -48,7 +48,7 @@ namespace Aria2Launcher.Services
 
         private void LogWithTime(string? content)
         {
-            Log($"{DateTime.Now.ToShortTimeString} {content ?? ""}");
+            Log($"{DateTime.Now.ToShortTimeString()} {content ?? ""}");
         }
 
         public bool CheckExeExist()
