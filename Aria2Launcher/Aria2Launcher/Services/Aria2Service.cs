@@ -46,9 +46,9 @@ namespace Aria2Launcher.Services
             Outputed?.Invoke(this, content);
         }
 
-        private void LogWithTime(string? content)
+        private void LogWithTime(string content)
         {
-            Log($"{DateTime.Now.ToShortTimeString()} {content ?? ""}");
+            Log($"{DateTime.Now.ToShortTimeString()} {content}");
         }
 
         public bool CheckExeExist()
