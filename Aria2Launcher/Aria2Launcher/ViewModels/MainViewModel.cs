@@ -18,8 +18,8 @@ namespace Aria2Launcher.ViewModels
             AppConfig = appConfig;
             Aria2 = aria2;
 
-            StartAria2Command = new RelayCommand(Aria2.StartAria2, () => !Aria2.IsStarting);
-            StopAria2Command = new RelayCommand(Aria2.StopAria2, () => Aria2.IsStarting);
+            StartAria2Command = new RelayCommand(() => ExecuteCommandCore(Aria2.StartAria2, StartAria2Command, StopAria2Command), () => !Aria2.IsStarting);
+            StopAria2Command = new RelayCommand(() => ExecuteCommandCore(Aria2.StopAria2, StartAria2Command, StopAria2Command), () => Aria2.IsStarting);
         }
 
         public IAppConfigService AppConfig { get; }
@@ -28,6 +28,14 @@ namespace Aria2Launcher.ViewModels
 
         public RelayCommand StartAria2Command { get; }
         public RelayCommand StopAria2Command { get; }
+
+        private void ExecuteCommandCore(Action action, params RelayCommand?[] commands)
+        {
+            action();
+
+            foreach (var item in commands)
+                item?.NotifyCanExecuteChanged();
+        }
 
         public void AddLog(string content)
         {
