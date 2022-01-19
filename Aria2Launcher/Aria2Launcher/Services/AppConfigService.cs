@@ -16,18 +16,42 @@ namespace Aria2Launcher.Services
         private ApplicationDataContainer _settings;
 
         private string _programDir;
+        private string _btTrackerSource;
+        private bool _useCustomDocFile;
+        private bool _autoStartWhenSystemLogin;
 
         public AppConfigService()
         {
             _settings = ApplicationData.Current.LocalSettings;
 
             _programDir = GetSetting(nameof(ProgramDir), "");
+            _btTrackerSource = GetSetting(nameof(BtTrackerSource), "");
+            _useCustomDocFile = GetSetting(nameof(UseCustomDocFile), false);
+            _autoStartWhenSystemLogin = GetSetting(nameof(AutoStartWhenSystemLogin), false);
         }
 
         public string ProgramDir
         {
             get { return _programDir; }
             set { SetSetting(ref _programDir, value); }
+        }
+
+        public string BtTrackerSource
+        {
+            get => _btTrackerSource;
+            set => SetSetting(ref _btTrackerSource, value);
+        }
+
+        public bool UseCustomDocFile
+        {
+            get => _useCustomDocFile;
+            set => SetSetting(ref _useCustomDocFile, value);
+        }
+
+        public bool AutoStartWhenSystemLogin
+        {
+            get => _autoStartWhenSystemLogin;
+            set => SetSetting(ref _autoStartWhenSystemLogin, value);
         }
 
         private T GetSetting<T>(string settingName, T defaultValue)

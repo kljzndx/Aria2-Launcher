@@ -9,5 +9,8 @@ namespace Aria2Launcher.Services
     public interface IAppConfigService
     {
         string ProgramDir { get; set; }
+        string BtTrackerSource { get; set; }
+        bool UseCustomDocFile { get; set; }
+        bool AutoStartWhenSystemLogin { get; set; }
     }
 }
