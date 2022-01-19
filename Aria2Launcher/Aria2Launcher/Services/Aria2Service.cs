@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Aria2Launcher.Services
 {
-    public class Aria2Service : ObservableObject
+    public class Aria2Service : ObservableObject, IDisposable
     {
         public const string ExeName = "aria2c.exe";
         public const string ConfName = "aria2.conf";
@@ -99,7 +99,7 @@ namespace Aria2Launcher.Services
             LogWithTime("Aria2 已启动");
         }
 
-        public void StopAria2()
+        public void Dispose()
         {
             if (_aria2Process == null)
                 return;
