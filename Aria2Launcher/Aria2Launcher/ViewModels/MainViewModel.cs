@@ -19,7 +19,7 @@ namespace Aria2Launcher.ViewModels
             Aria2 = aria2;
 
             StartAria2Command = new RelayCommand(() => ExecuteCommandCore(Aria2.StartAria2, StartAria2Command, StopAria2Command), () => !Aria2.IsStarting);
-            StopAria2Command = new RelayCommand(() => ExecuteCommandCore(Aria2.StopAria2, StartAria2Command, StopAria2Command), () => Aria2.IsStarting);
+            StopAria2Command = new RelayCommand(() => ExecuteCommandCore(Aria2.Dispose, StartAria2Command, StopAria2Command), () => Aria2.IsStarting);
         }
 
         public IAppConfigService AppConfig { get; }
