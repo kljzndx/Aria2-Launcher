@@ -25,7 +25,13 @@
             <Button Command="{Binding StartAria2Command}">启动 Aria2</Button>
             <Button Grid.Column="1" Command="{Binding StopAria2Command}">停止 Aria2</Button>
         </Grid>
-        
-        <ListView Grid.Row="2" ItemsSource="{Binding Logs, Mode=OneWay}"/>
+
+        <ListView Grid.Row="2" ItemsSource="{Binding Logs, Mode=OneWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <TextBlock Text="{x:Bind}" IsTextSelectionEnabled="True"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>
