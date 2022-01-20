@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -23,7 +23,7 @@
             <Button Grid.Column="1" Command="{Binding StopAria2Command}">停止 Aria2</Button>
         </Grid>
 
-        <ListView Grid.Row="2" ItemsSource="{Binding Logs, Mode=OneWay}">
+        <ListView Grid.Row="1" ItemsSource="{Binding Logs, Mode=OneWay}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
                     <TextBlock Text="{x:Bind}" IsTextSelectionEnabled="True"/>
