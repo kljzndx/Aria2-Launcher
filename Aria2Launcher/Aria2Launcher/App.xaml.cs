@@ -1,5 +1,6 @@
 ﻿using Aria2Launcher.Services;
 using Aria2Launcher.ViewModels;
+using Aria2Launcher.Views;
 
 using CommunityToolkit.Mvvm.DependencyInjection;
 
