@@ -10,12 +10,9 @@
     <Grid DataContext="{Binding Source={StaticResource locator}, Path=Main}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBox Text="{Binding AppConfig.ProgramDir, Mode=TwoWay}"/>
-        
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

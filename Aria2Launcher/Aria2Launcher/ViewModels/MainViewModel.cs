@@ -13,16 +13,14 @@ namespace Aria2Launcher.ViewModels
 {
     public class MainViewModel : ObservableObject
     {
-        public MainViewModel(IAppConfigService appConfig, Aria2Service aria2)
+        public MainViewModel(Aria2Service aria2)
         {
-            AppConfig = appConfig;
             Aria2 = aria2;
 
             StartAria2Command = new RelayCommand(() => ExecuteCommandCore(Aria2.StartAria2, StartAria2Command, StopAria2Command), () => !Aria2.IsStarting);
             StopAria2Command = new RelayCommand(() => ExecuteCommandCore(Aria2.Dispose, StartAria2Command, StopAria2Command), () => Aria2.IsStarting);
         }
 
-        public IAppConfigService AppConfig { get; }
         public Aria2Service Aria2 { get; }
         public ObservableCollection<string> Logs { get; } = new ObservableCollection<string>();
 
