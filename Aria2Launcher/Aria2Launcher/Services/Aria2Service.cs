@@ -104,6 +104,12 @@ namespace Aria2Launcher.Services
             if (_aria2Process == null)
                 return;
 
+            _aria2Process.OutputDataReceived -= Aria2Process_OutputDataReceived;
+            _aria2Process.ErrorDataReceived -= Aria2Process_ErrorDataReceived;
+            _aria2Process.Exited -= Aria2Process_Exited;
+            _aria2Process.CancelErrorRead();
+            _aria2Process.CancelOutputRead();
+            
             _aria2Process.Kill();
             _aria2Process.Dispose();
             _aria2Process = null;
