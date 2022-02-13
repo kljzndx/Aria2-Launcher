@@ -18,8 +18,10 @@ namespace Aria2Launcher.ViewModel
             BrowseAria2DirCommand = new RelayCommand(() => Configuration.Aria2DirPath = BrowseFolder());
             StartAria2Command = new RelayCommand(Aria2.StartAria2, () => !Aria2.IsRunning);
             StopAria2Command = new RelayCommand(Aria2.StopAria2, () => Aria2.IsRunning);
-            ShowConfigureCommand = new RelayCommand(() => new Aria2ConfigureWindow().Show());
-            
+            ShowAria2ConfWindowCommand = new RelayCommand(() => new Aria2ConfigureWindow().Show());
+            ShowAppConfWindowCommand = new RelayCommand(() => new AppConfigWindow().Show());
+
+
             Aria2.Aria2Exited += Aria2Service_OnAria2Exited;
             Messenger.Default.Register<object>(this, "RestartAria2", m =>
             {
@@ -39,7 +41,8 @@ namespace Aria2Launcher.ViewModel
         public RelayCommand BrowseAria2DirCommand { get; }
         public RelayCommand StartAria2Command { get; }
         public RelayCommand StopAria2Command { get; }
-        public RelayCommand ShowConfigureCommand { get; }
+        public RelayCommand ShowAria2ConfWindowCommand { get; }
+        public RelayCommand ShowAppConfWindowCommand { get; }
 
         private string BrowseFolder()
         {

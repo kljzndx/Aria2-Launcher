@@ -38,11 +38,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <Button x:Name="StartAria2_Button" Command="{Binding StartAria2Command}" Content="{Binding Source={StaticResource R}, Path=Strings.StartAria2}"/>
                 <Button x:Name="StopAria2_Button" Grid.Column="1" Command="{Binding StopAria2Command}" Content="{Binding Source={StaticResource R}, Path=Strings.StopAria2}"/>
-                <Button x:Name="ConfigureAria2_Button" Grid.Column="2" Command="{Binding ShowConfigureCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.Aria2Configure}"/>
+                <Button x:Name="ConfigureAria2_Button" Grid.Column="2" Command="{Binding ShowAria2ConfWindowCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.Aria2Configure}"/>
+                <Button x:Name="ConfigureApp_Button" Grid.Column="3" Command="{Binding ShowAppConfWindowCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.AppConfigure}"/>
             </Grid>
         </StackPanel>
 
