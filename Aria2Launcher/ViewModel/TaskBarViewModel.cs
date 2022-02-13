@@ -12,8 +12,6 @@ namespace Aria2Launcher.ViewModel
 {
     public class TaskBarViewModel : ViewModelBase
     {
-        private const string LnkFileName = "Aria2Launcher.lnk";
-        
         public TaskBarViewModel()
         {
             StartAria2Command = new RelayCommand(Aria2.StartAria2, () => !Aria2.IsRunning);
@@ -30,7 +28,7 @@ namespace Aria2Launcher.ViewModel
                 Application.Current.Shutdown();
             });
 
-            AutoStartCommand = new RelayCommand<bool>(SwitchAutoStart);
+            AutoStartCommand = new RelayCommand<bool>(Configuration.SwitchAutoStart);
             
             Aria2.Aria2Exited += Aria2Service_OnAria2Exited;
         }
@@ -45,43 +43,6 @@ namespace Aria2Launcher.ViewModel
         public RelayCommand ExitAppCommand { get; }
         
         public RelayCommand<bool> AutoStartCommand { get; }
-
-
-
-        /// <summary>
-        /// 为本程序创建一个快捷方式。
-        /// </summary>
-        /// <param name="lnkFilePath">快捷方式的完全限定路径。</param>
-        /// <param name="args">快捷方式启动程序时需要使用的参数。</param>
-        private void CreateShortcut(string lnkFilePath, string args = "")
-        {
-            var dllPath = Assembly.GetEntryAssembly()?.Location;
-
-            if (string.IsNullOrWhiteSpace(dllPath))
-                throw new Exception("无法获取程序的路径");
-
-            var pathWithoutExtension = dllPath.Remove(dllPath.LastIndexOf('.') + 1);
-            var exePath = pathWithoutExtension + "exe";
-
-            var shell = new IWshRuntimeLibrary.WshShell();
-            var shortcut = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(lnkFilePath);
-            shortcut.TargetPath = exePath;
-            shortcut.Arguments = args;
-            shortcut.WorkingDirectory = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
-            shortcut.Save();
-        }
-        
-        private void SwitchAutoStart(bool needAutoStart)
-        {
-            var lnkPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), LnkFileName);
-            if (File.Exists(lnkPath))
-                File.Delete(lnkPath);
-
-            if (!needAutoStart)
-                return;
-
-            CreateShortcut(lnkPath);
-        }
 
         private void Aria2Service_OnAria2Exited(object sender, EventArgs e)
         {

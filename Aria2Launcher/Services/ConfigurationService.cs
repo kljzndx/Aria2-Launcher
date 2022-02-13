@@ -13,6 +13,7 @@ namespace Aria2Launcher.Services
     public class ConfigurationService : ObservableObject
     {
         private const string ConfFileName = "Aria2Launcher.json";
+        private const string LnkFileName = "Aria2Launcher.lnk";
 
         public static ConfigurationService Current { get; }
 
@@ -49,6 +50,41 @@ namespace Aria2Launcher.Services
         {
             get => _isAutoStart;
             set => SetSetting(ref _isAutoStart, value);
+        }
+
+        /// <summary>
+        /// 为本程序创建一个快捷方式。
+        /// </summary>
+        /// <param name="lnkFilePath">快捷方式的完全限定路径。</param>
+        /// <param name="args">快捷方式启动程序时需要使用的参数。</param>
+        private void CreateShortcut(string lnkFilePath, string args = "")
+        {
+            var dllPath = Assembly.GetEntryAssembly()?.Location;
+
+            if (string.IsNullOrWhiteSpace(dllPath))
+                throw new Exception("无法获取程序的路径");
+
+            var pathWithoutExtension = dllPath.Remove(dllPath.LastIndexOf('.') + 1);
+            var exePath = pathWithoutExtension + "exe";
+
+            var shell = new IWshRuntimeLibrary.WshShell();
+            var shortcut = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(lnkFilePath);
+            shortcut.TargetPath = exePath;
+            shortcut.Arguments = args;
+            shortcut.WorkingDirectory = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+            shortcut.Save();
+        }
+
+        public void SwitchAutoStart(bool needAutoStart)
+        {
+            var lnkPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), LnkFileName);
+            if (File.Exists(lnkPath))
+                File.Delete(lnkPath);
+
+            if (!needAutoStart)
+                return;
+
+            CreateShortcut(lnkPath);
         }
 
         private void SetSetting<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
