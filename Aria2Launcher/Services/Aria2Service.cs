@@ -17,6 +17,9 @@ namespace Aria2Launcher.Services
 {
     public class Aria2Service : ObservableObject
     {
+        private const string ExeFileName = "aria2c.exe";
+        private const string ConfFileName = "aria2.conf";
+
         public static Aria2Service Current { get; }
         
         private bool _isRunning;
@@ -79,7 +82,7 @@ namespace Aria2Launcher.Services
 
         public bool CheckExeExist()
         {
-            string exePath = Configuration.Aria2DirPath + "\\aria2c.exe";
+            string exePath = Path.Combine(Configuration.Aria2DirPath, ExeFileName);
 
             if (!File.Exists(exePath))
             {
@@ -100,8 +103,8 @@ namespace Aria2Launcher.Services
 
         public bool CheckConfExist()
         {
-            string confPath = Configuration.Aria2DirPath + "\\aria2.conf";
-            
+            string confPath = Path.Combine(Configuration.Aria2DirPath, ConfFileName);
+
             if (!File.Exists(confPath))
             {
                 if (MessageBox.Show(StringResource.Err_BuildConf, StringResource.Err_NoAria2Conf, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -117,8 +120,8 @@ namespace Aria2Launcher.Services
 
         private bool SetupProcess()
         {
-            string exePath = Configuration.Aria2DirPath + "\\aria2c.exe";
-            string confPath = Configuration.Aria2DirPath + "\\aria2.conf";
+            string exePath = Path.Combine(Configuration.Aria2DirPath, ExeFileName);
+            string confPath = Path.Combine(Configuration.Aria2DirPath, ConfFileName);
 
             if (CheckExeExist())
             {
