@@ -23,14 +23,6 @@ namespace Aria2Launcher.ViewModel
 
 
             Aria2.Aria2Exited += Aria2Service_OnAria2Exited;
-            Messenger.Default.Register<object>(this, "RestartAria2", m =>
-            {
-                if (!Aria2.IsRunning)
-                    return;
-
-                _needRestart = true;
-                Aria2.StopAria2();
-            });
         }
 
         public ConfigurationService Configuration { get; } = ConfigurationService.Current;
@@ -56,13 +48,6 @@ namespace Aria2Launcher.ViewModel
 
         private void Aria2Service_OnAria2Exited(object sender, EventArgs e)
         {
-            if (_needRestart)
-            {
-                _needRestart = false;
-                Aria2.StartAria2();
-                return;
-            }
-            
             StartAria2Command.RaiseCanExecuteChanged();
             StopAria2Command.RaiseCanExecuteChanged();
         }

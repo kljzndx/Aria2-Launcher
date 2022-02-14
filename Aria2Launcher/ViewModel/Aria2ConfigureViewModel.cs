@@ -13,11 +13,14 @@ namespace Aria2Launcher.ViewModel
 {
     public class Aria2ConfigureViewModel : ViewModelBase
     {
+        private Aria2Service _aria2Service;
         private Aria2ConfService _aria2ConfService;
         private SettingGroup _selectGroup;
 
         public Aria2ConfigureViewModel()
         {
+            _aria2Service = Aria2Service.Current;
+
             string json = File.ReadAllText("./Aria2ConfDoc.json");
             _aria2ConfService = new Aria2ConfService(json);
             
@@ -50,7 +53,7 @@ namespace Aria2Launcher.ViewModel
         public void Save()
         {
             _aria2ConfService.Save();
-            Messenger.Default.Send<object>(null, "RestartAria2");
+            _aria2Service.RestartAria2();
         }
     }
 }

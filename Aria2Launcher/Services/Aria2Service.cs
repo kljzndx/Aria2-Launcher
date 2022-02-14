@@ -23,6 +23,7 @@ namespace Aria2Launcher.Services
         public static Aria2Service Current { get; }
         
         private bool _isRunning;
+        private bool _isRestarting;
         private readonly Process _aria2Process;
 
         public event EventHandler<string> ErrorDataReceived;
@@ -178,6 +179,16 @@ namespace Aria2Launcher.Services
             _aria2Process.Kill();
         }
 
+        public void RestartAria2()
+        {
+            _isRestarting = true;
+            if (IsRunning)
+                StopAria2();
+
+            StartAria2();
+            _isRestarting = false;
+        }
+
         private void Aria2Process_OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
             DispatcherHelper.RunAsync(() => Log(e.Data));
@@ -197,7 +208,8 @@ namespace Aria2Launcher.Services
 
                 IsRunning = false;
                 Log("Aria2 已退出");
-                Aria2Exited?.Invoke(this, EventArgs.Empty);
+                if (!_isRestarting)
+                    Aria2Exited?.Invoke(this, EventArgs.Empty);
             });
         }
     }
