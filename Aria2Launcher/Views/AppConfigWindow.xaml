@@ -10,7 +10,7 @@
     <Window.DataContext>
         <vm:AppConfigViewModel/>
     </Window.DataContext>
-    
+
     <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -31,7 +31,7 @@
                     <Button Grid.Column="1">浏览</Button>
                 </Grid>
 
-                <StackPanel Visibility="{Binding IsEmptyPath, Mode=OneWay}" Orientation="Vertical">
+                <StackPanel Visibility="{Binding IsEmptyPath, Mode=OneWay, Converter={StaticResource Boolean2VisibilityConverter}}" Orientation="Vertical">
                     <StackPanel.Resources>
                         <Style TargetType="StackPanel">
                             <Setter Property="Orientation" Value="Horizontal"/>
@@ -42,14 +42,14 @@
                         </Style>
                     </StackPanel.Resources>
 
-                    <StackPanel Visibility="{Binding FalledExe, Mode=OneWay}">
+                    <StackPanel Visibility="{Binding FalledExe, Mode=OneWay, Converter={StaticResource Boolean2VisibilityConverter}}">
                         <TextBlock>
                             <Run>找不到主程序</Run>
                             <Run> (aria2c.exe) </Run>
                         </TextBlock>
                         <Button>下载...</Button>
                     </StackPanel>
-                    <StackPanel Visibility="{Binding FalledConf, Mode=OneWay}">
+                    <StackPanel Visibility="{Binding FalledConf, Mode=OneWay, Converter={StaticResource Boolean2VisibilityConverter}}">
                         <TextBlock>
                             <Run>找不到配置文件</Run>
                             <Run>(aria2.conf)</Run>
