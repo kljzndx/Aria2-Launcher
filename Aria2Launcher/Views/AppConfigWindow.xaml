@@ -28,7 +28,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBox Text="{Binding Configuration.Aria2DirPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button Grid.Column="1">浏览</Button>
+                    <Button Grid.Column="1" Command="{Binding BrowseAria2DirCommand}">浏览</Button>
                 </Grid>
 
                 <StackPanel Visibility="{Binding HasAria2Path, Mode=OneWay, Converter={StaticResource Boolean2VisibilityConverter}}" Orientation="Vertical">
@@ -47,14 +47,14 @@
                             <Run>找不到主程序</Run>
                             <Run> (aria2c.exe) </Run>
                         </TextBlock>
-                        <Button>下载...</Button>
+                        <Button Command="{Binding ViewOfficialSiteCommand}">下载...</Button>
                     </StackPanel>
                     <StackPanel Visibility="{Binding FalledConf, Mode=OneWay, Converter={StaticResource Boolean2VisibilityConverter}}">
                         <TextBlock>
                             <Run>找不到配置文件</Run>
                             <Run>(aria2.conf)</Run>
                         </TextBlock>
-                        <Button>生成（Generate）</Button>
+                        <Button Command="{Binding GenerateConfFileCommand}">生成（Generate）</Button>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
