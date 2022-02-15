@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Aria2Launcher.ViewModel
 {
@@ -27,6 +28,7 @@ namespace Aria2Launcher.ViewModel
             CheckAria2Path();
             Configuration.PropertyChanged += Configuration_PropertyChanged;
 
+            BrowseAria2DirCommand = new RelayCommand(() => Configuration.Aria2DirPath = BrowseFolder());
             GenerateConfFileCommand = new RelayCommand(() => File.WriteAllText(Aria2.GetConfPath(), "enable-rpc=true"),
                 () => !HasAria2Path || Aria2.CheckConfExist());
         }
@@ -34,6 +36,7 @@ namespace Aria2Launcher.ViewModel
         public Aria2Service Aria2 { get; }
         public ConfigurationService Configuration { get; }
 
+        public RelayCommand BrowseAria2DirCommand { get; }
         public RelayCommand GenerateConfFileCommand { get; }
 
         public bool HasAria2Path
@@ -52,6 +55,16 @@ namespace Aria2Launcher.ViewModel
         {
             get { return _falledConf; }
             set { Set(ref _falledConf, value); }
+        }
+
+        private string BrowseFolder()
+        {
+            using (var picker = new FolderBrowserDialog())
+            {
+                picker.RootFolder = Environment.SpecialFolder.MyComputer;
+                var dialogResult = picker.ShowDialog();
+                return dialogResult == DialogResult.OK ? picker.SelectedPath : Configuration.Aria2DirPath;
+            }
         }
 
         public void CheckAria2Path()
