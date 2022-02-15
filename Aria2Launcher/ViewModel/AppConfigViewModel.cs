@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,7 @@ namespace Aria2Launcher.ViewModel
             Configuration.PropertyChanged += Configuration_PropertyChanged;
 
             BrowseAria2DirCommand = new RelayCommand(() => Configuration.Aria2DirPath = BrowseFolder());
+            ViewOfficialSiteCommand = new RelayCommand(ViewOfficialSite);
             GenerateConfFileCommand = new RelayCommand(() =>
             {
                 File.WriteAllText(Aria2.GetConfPath(), "enable-rpc=true");
@@ -41,6 +43,7 @@ namespace Aria2Launcher.ViewModel
         public ConfigurationService Configuration { get; }
 
         public RelayCommand BrowseAria2DirCommand { get; }
+        public RelayCommand ViewOfficialSiteCommand { get; }
         public RelayCommand GenerateConfFileCommand { get; }
 
         public bool HasAria2Path
@@ -76,6 +79,16 @@ namespace Aria2Launcher.ViewModel
             HasAria2Path = !string.IsNullOrWhiteSpace(Configuration.Aria2DirPath);
             FalledExe = !Aria2.CheckExeExist();
             FalledConf = !Aria2.CheckConfExist();
+        }
+
+        public void ViewOfficialSite()
+        {
+            using (var process = new Process())
+            {
+                process.StartInfo.FileName = "https://github.com/aria2/aria2/releases/latest";
+                process.StartInfo.UseShellExecute = true;
+                process.Start();
+            }
         }
 
         private void Configuration_PropertyChanged(object sender, PropertyChangedEventArgs e)
