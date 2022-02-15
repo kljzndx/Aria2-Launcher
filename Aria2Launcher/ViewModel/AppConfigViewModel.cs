@@ -1,10 +1,12 @@
 ﻿using Aria2Launcher.Services;
 
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,10 +26,15 @@ namespace Aria2Launcher.ViewModel
 
             CheckAria2Path();
             Configuration.PropertyChanged += Configuration_PropertyChanged;
+
+            GenerateConfFileCommand = new RelayCommand(() => File.WriteAllText(Aria2.GetConfPath(), "enable-rpc=true"),
+                () => !HasAria2Path || Aria2.CheckConfExist());
         }
 
         public Aria2Service Aria2 { get; }
         public ConfigurationService Configuration { get; }
+
+        public RelayCommand GenerateConfFileCommand { get; }
 
         public bool HasAria2Path
         {
