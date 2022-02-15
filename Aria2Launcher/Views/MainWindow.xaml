@@ -19,35 +19,20 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <StackPanel>
-            <StackPanel>
-                <TextBlock Text="{Binding Source={StaticResource R}, Path=Strings.Aria2Dir}"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-                    <TextBox x:Name="Aria2DirPath_TextBox" Text="{Binding Configuration.Aria2DirPath, Mode=TwoWay}"/>
-                    <Button x:Name="Aria2DirPathBrowse_Button" Grid.Column="1" Command="{Binding BrowseAria2DirCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.Browse}"/>
-                </Grid>
-            </StackPanel>
-            
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <Button x:Name="StartAria2_Button" Command="{Binding StartAria2Command}" Content="{Binding Source={StaticResource R}, Path=Strings.StartAria2}"/>
-                <Button x:Name="StopAria2_Button" Grid.Column="1" Command="{Binding StopAria2Command}" Content="{Binding Source={StaticResource R}, Path=Strings.StopAria2}"/>
-                <Button x:Name="ConfigureAria2_Button" Grid.Column="2" Command="{Binding ShowAria2ConfWindowCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.Aria2Configure}"/>
-                <Button x:Name="ConfigureApp_Button" Grid.Column="3" Command="{Binding ShowAppConfWindowCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.AppConfigure}"/>
-            </Grid>
-        </StackPanel>
-
+            <Button x:Name="StartAria2_Button" Command="{Binding StartAria2Command}" Content="{Binding Source={StaticResource R}, Path=Strings.StartAria2}"/>
+            <Button x:Name="StopAria2_Button" Grid.Column="1" Command="{Binding StopAria2Command}" Content="{Binding Source={StaticResource R}, Path=Strings.StopAria2}"/>
+            <Button x:Name="ConfigureAria2_Button" Grid.Column="2" Command="{Binding ShowAria2ConfWindowCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.Aria2Configure}"/>
+            <Button x:Name="ConfigureApp_Button" Grid.Column="3" Command="{Binding ShowAppConfWindowCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.AppConfigure}"/>
+        </Grid>
+        
         <ListBox x:Name="Output_ListBox" Grid.Row="1" ItemsSource="{Binding OutputList, Mode=OneWay}"/>
     </Grid>
 </Window>
