@@ -15,7 +15,7 @@ namespace Aria2Launcher.ViewModel
     {
         private bool _falledExe;
         private bool _falledConf;
-        private bool _isEmptyPath;
+        private bool _hasAria2Path;
 
         public AppConfigViewModel()
         {
@@ -29,10 +29,10 @@ namespace Aria2Launcher.ViewModel
         public Aria2Service Aria2 { get; }
         public ConfigurationService Configuration { get; }
 
-        public bool IsEmptyPath
+        public bool HasAria2Path
         {
-            get { return _isEmptyPath; }
-            set { Set(ref _isEmptyPath, value); }
+            get { return _hasAria2Path; }
+            set { Set(ref _hasAria2Path, value); }
         }
 
         public bool FalledExe
@@ -49,9 +49,9 @@ namespace Aria2Launcher.ViewModel
 
         public void CheckAria2Path()
         {
-            IsEmptyPath = string.IsNullOrWhiteSpace(Configuration.Aria2DirPath);
-            FalledExe = Aria2.CheckExeExist();
-            FalledConf = Aria2.CheckConfExist();
+            HasAria2Path = !string.IsNullOrWhiteSpace(Configuration.Aria2DirPath);
+            FalledExe = !Aria2.CheckExeExist();
+            FalledConf = !Aria2.CheckConfExist();
         }
 
         private void Configuration_PropertyChanged(object sender, PropertyChangedEventArgs e)
