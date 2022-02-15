@@ -29,8 +29,12 @@ namespace Aria2Launcher.ViewModel
             Configuration.PropertyChanged += Configuration_PropertyChanged;
 
             BrowseAria2DirCommand = new RelayCommand(() => Configuration.Aria2DirPath = BrowseFolder());
-            GenerateConfFileCommand = new RelayCommand(() => File.WriteAllText(Aria2.GetConfPath(), "enable-rpc=true"),
-                () => !HasAria2Path || Aria2.CheckConfExist());
+            GenerateConfFileCommand = new RelayCommand(() =>
+            {
+                File.WriteAllText(Aria2.GetConfPath(), "enable-rpc=true");
+                FalledConf = false;
+            },
+            () => !HasAria2Path || FalledConf);
         }
 
         public Aria2Service Aria2 { get; }
