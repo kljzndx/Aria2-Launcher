@@ -11,8 +11,6 @@ namespace Aria2Launcher.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private bool _needRestart;
-        
         public MainViewModel()
         {
             StartAria2Command = new RelayCommand(Aria2.StartAria2, () => !Aria2.IsRunning);
