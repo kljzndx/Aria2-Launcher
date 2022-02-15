@@ -84,9 +84,19 @@ namespace Aria2Launcher.Services
             ErrorDataReceived?.Invoke(this, content);
         }
 
+        public string GetExePath()
+        {
+            return Path.Combine(Configuration.Aria2DirPath, ExeFileName);
+        }
+
+        public string GetConfPath()
+        {
+            return Path.Combine(Configuration.Aria2DirPath, ConfFileName);
+        }
+
         public bool CheckExeExist()
         {
-            string exePath = Path.Combine(Configuration.Aria2DirPath, ExeFileName);
+            string exePath = GetExePath();
 
             if (!File.Exists(exePath))
             {
@@ -107,7 +117,7 @@ namespace Aria2Launcher.Services
 
         public bool CheckConfExist()
         {
-            string confPath = Path.Combine(Configuration.Aria2DirPath, ConfFileName);
+            string confPath = GetConfPath();
 
             if (!File.Exists(confPath))
             {
