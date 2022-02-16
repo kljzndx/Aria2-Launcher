@@ -25,8 +25,8 @@
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
-            <TextBlock Style="{StaticResource key_tb}">Aria2 程序目录：</TextBlock>
+
+            <TextBlock Style="{StaticResource key_tb}" Text="{Binding Source={StaticResource R}, Path=Strings.Aria2Dir}" />
 
             <StackPanel Grid.Column="1">
                 <Grid>
@@ -36,7 +36,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBox Text="{Binding Configuration.Aria2DirPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button Grid.Column="1" Command="{Binding BrowseAria2DirCommand}">浏览</Button>
+                    <Button Grid.Column="1" Command="{Binding BrowseAria2DirCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.Browse}"/>
                 </Grid>
 
                 <StackPanel Visibility="{Binding HasAria2Path, Mode=OneWay, Converter={StaticResource Boolean2VisibilityConverter}}" Orientation="Vertical">
@@ -52,17 +52,17 @@
 
                     <StackPanel Visibility="{Binding FalledExe, Mode=OneWay, Converter={StaticResource Boolean2VisibilityConverter}}">
                         <TextBlock>
-                            <Run>找不到主程序</Run>
+                            <Run Text="{Binding Source={StaticResource R}, Path=Strings.CannotFindFile, Mode=OneTime}"/>
                             <Run> (aria2c.exe) </Run>
                         </TextBlock>
-                        <Button Command="{Binding ViewOfficialSiteCommand}">下载...</Button>
+                        <Button Command="{Binding ViewOfficialSiteCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.Download}"/>
                     </StackPanel>
                     <StackPanel Visibility="{Binding FalledConf, Mode=OneWay, Converter={StaticResource Boolean2VisibilityConverter}}">
                         <TextBlock>
-                            <Run>找不到配置文件</Run>
+                            <Run Text="{Binding Source={StaticResource R}, Path=Strings.CannotFindFile, Mode=OneTime}"/>
                             <Run>(aria2.conf)</Run>
                         </TextBlock>
-                        <Button Command="{Binding GenerateConfFileCommand}">生成（Generate）</Button>
+                        <Button Command="{Binding GenerateConfFileCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.Generate}"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
@@ -73,7 +73,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Style="{StaticResource key_tb}" Text="开机自动启动"/>
+            <TextBlock Style="{StaticResource key_tb}" Text="{Binding Source={StaticResource R}, Path=Strings.AutoStart}"/>
 
             <ToggleButton Grid.Column="1" HorizontalAlignment="Left" Margin="8,0"
                           IsChecked="{Binding Configuration.IsAutoStart, Mode=TwoWay}"
