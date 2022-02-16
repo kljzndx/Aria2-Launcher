@@ -127,15 +127,15 @@
   </data>
   <data name="Aria2Conf_Column_Comment" xml:space="preserve">
     <value>Comment</value>
-    <comment>配置面板</comment>
+    <comment>Aria2 配置面板</comment>
   </data>
   <data name="Aria2Conf_Column_Name" xml:space="preserve">
     <value>Name</value>
-    <comment>配置面板</comment>
+    <comment>Aria2 配置面板</comment>
   </data>
   <data name="Aria2Conf_Column_Value" xml:space="preserve">
     <value>Value</value>
-    <comment>配置面板</comment>
+    <comment>Aria2 配置面板</comment>
   </data>
   <data name="Aria2Dir" xml:space="preserve">
     <value>Aria2 Dir:</value>
@@ -151,11 +151,11 @@
   </data>
   <data name="BtTrackerSource" xml:space="preserve">
     <value>BT Tracker source: </value>
-    <comment>配置面板</comment>
+    <comment>Aria2 配置面板</comment>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
-    <comment>配置面板</comment>
+    <comment>Aria2 配置面板</comment>
   </data>
   <data name="Err_BuildConf" xml:space="preserve">
     <value>Do you need to build a default conf file</value>
@@ -203,7 +203,7 @@
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
-    <comment>配置面板</comment>
+    <comment>Aria2 配置面板</comment>
   </data>
   <data name="ShowWindow" xml:space="preserve">
     <value>Show Window</value>
@@ -219,6 +219,6 @@
   </data>
   <data name="UpdateTracker" xml:space="preserve">
     <value>Update now</value>
-    <comment>配置面板</comment>
+    <comment>Aria2 配置面板</comment>
   </data>
 </root>

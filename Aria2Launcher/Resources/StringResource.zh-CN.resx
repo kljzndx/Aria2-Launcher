@@ -183,23 +183,23 @@
   </data>
   <data name="Aria2Conf_Column_Comment" xml:space="preserve">
     <value>注释</value>
-    <comment>配置面板</comment>
+    <comment>Aria2 配置面板</comment>
   </data>
   <data name="Aria2Conf_Column_Name" xml:space="preserve">
     <value>名称</value>
-    <comment>配置面板</comment>
+    <comment>Aria2 配置面板</comment>
   </data>
   <data name="Aria2Conf_Column_Value" xml:space="preserve">
     <value>值</value>
-    <comment>配置面板</comment>
+    <comment>Aria2 配置面板</comment>
   </data>
   <data name="BtTrackerSource" xml:space="preserve">
     <value>BT Tracker 更新地址： </value>
-    <comment>配置面板</comment>
+    <comment>Aria2 配置面板</comment>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
-    <comment>配置面板</comment>
+    <comment>Aria2 配置面板</comment>
   </data>
   <data name="Err_GetTracker" xml:space="preserve">
     <value>下载失败，错误码： </value>
@@ -211,11 +211,11 @@
   </data>
   <data name="Ok" xml:space="preserve">
     <value>确定</value>
-    <comment>配置面板</comment>
+    <comment>Aria2 配置面板</comment>
   </data>
   <data name="UpdateTracker" xml:space="preserve">
     <value>立即更新</value>
-    <comment>配置面板</comment>
+    <comment>Aria2 配置面板</comment>
   </data>
   <data name="AppConfigure" xml:space="preserve">
     <value>GUI 配置面板</value>
