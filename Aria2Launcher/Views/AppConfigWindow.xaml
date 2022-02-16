@@ -14,8 +14,8 @@
 
     <Window.Resources>
         <Style x:Key="key_tb" TargetType="TextBlock">
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="Margin" Value="0,8" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Margin" Value="8" />
         </Style>
     </Window.Resources>
 
@@ -25,7 +25,7 @@
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-
+            
             <TextBlock Style="{StaticResource key_tb}">Aria2 程序目录：</TextBlock>
 
             <StackPanel Grid.Column="1">
