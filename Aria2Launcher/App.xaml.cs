@@ -27,7 +27,7 @@ namespace Aria2Launcher
             ConfigurationService.Current.Load();
             Aria2Service.Current.ErrorDataReceived += Aria2Service_ErrorDataReceived;
 
-            if (Directory.Exists(ConfigurationService.Current.Aria2DirPath))
+            if (Aria2Service.Current.CheckExeExist())
             {
                 Aria2Service.Current.StartAria2();
             }
