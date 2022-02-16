@@ -4,12 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:Aria2Launcher.ViewModel"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
         Title="AppConfigWindow" Height="450" Width="800">
     
     <Window.DataContext>
         <vm:AppConfigViewModel/>
     </Window.DataContext>
+
+    <Window.Resources>
+        <Style x:Key="key_tb" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Margin" Value="0,8" />
+        </Style>
+    </Window.Resources>
 
     <StackPanel>
         <Grid>
@@ -18,7 +26,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock HorizontalAlignment="Right" Margin="0,8">Aria2 程序目录：</TextBlock>
+            <TextBlock Style="{StaticResource key_tb}">Aria2 程序目录：</TextBlock>
 
             <StackPanel Grid.Column="1">
                 <Grid>
@@ -58,6 +66,19 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Style="{StaticResource key_tb}" Text="开机自动启动"/>
+
+            <ToggleButton Grid.Column="1" HorizontalAlignment="Left" Margin="8,0"
+                          IsChecked="{Binding Configuration.IsAutoStart, Mode=TwoWay}"
+                          Command="{Binding SwitchAutoStartCommand}" CommandParameter="{Binding Configuration.IsAutoStart, Mode=OneWay}"
+                          Style="{StaticResource ToggleButtonSwitch}"/>
         </Grid>
     </StackPanel>
 </Window>

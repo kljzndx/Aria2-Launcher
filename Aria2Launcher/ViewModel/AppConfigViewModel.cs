@@ -37,6 +37,7 @@ namespace Aria2Launcher.ViewModel
                 FalledConf = false;
             },
             () => !HasAria2Path || FalledConf);
+            SwitchAutoStartCommand = new RelayCommand<bool>(Configuration.SwitchAutoStart);
         }
 
         public Aria2Service Aria2 { get; }
@@ -45,6 +46,7 @@ namespace Aria2Launcher.ViewModel
         public RelayCommand BrowseAria2DirCommand { get; }
         public RelayCommand ViewOfficialSiteCommand { get; }
         public RelayCommand GenerateConfFileCommand { get; }
+        public RelayCommand<bool> SwitchAutoStartCommand { get; set; }
 
         public bool HasAria2Path
         {
