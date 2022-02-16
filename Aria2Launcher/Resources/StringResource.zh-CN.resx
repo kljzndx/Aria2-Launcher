@@ -127,7 +127,7 @@
   </data>
   <data name="AutoStart" xml:space="preserve">
     <value>开机时自动启动</value>
-    <comment>任务栏</comment>
+    <comment>任务栏 &amp; App 配置面板</comment>
   </data>
   <data name="Browse" xml:space="preserve">
     <value>浏览</value>
@@ -220,5 +220,17 @@
   <data name="AppConfigure" xml:space="preserve">
     <value>GUI 配置面板</value>
     <comment>主界面</comment>
+  </data>
+  <data name="CannotFindFile" xml:space="preserve">
+    <value>找不到文件</value>
+    <comment>App 配置面板</comment>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>下载...</value>
+    <comment>App 配置面板</comment>
+  </data>
+  <data name="Generate" xml:space="preserve">
+    <value>生成</value>
+    <comment>App 配置面板</comment>
   </data>
 </root>

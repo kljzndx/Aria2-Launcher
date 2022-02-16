@@ -143,7 +143,7 @@
   </data>
   <data name="AutoStart" xml:space="preserve">
     <value>Auto start when system login</value>
-    <comment>任务栏</comment>
+    <comment>任务栏 &amp; App 配置面板</comment>
   </data>
   <data name="Browse" xml:space="preserve">
     <value>Browse</value>
@@ -156,6 +156,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
     <comment>Aria2 配置面板</comment>
+  </data>
+  <data name="CannotFindFile" xml:space="preserve">
+    <value>Cannot find file</value>
+    <comment>App 配置面板</comment>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download...</value>
+    <comment>App 配置面板</comment>
   </data>
   <data name="Err_BuildConf" xml:space="preserve">
     <value>Do you need to build a default conf file</value>
@@ -180,6 +188,10 @@
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
     <comment>任务栏</comment>
+  </data>
+  <data name="Generate" xml:space="preserve">
+    <value>Generate</value>
+    <comment>App 配置面板</comment>
   </data>
   <data name="Log_Aria2Exited" xml:space="preserve">
     <value>Aria2 Exited</value>

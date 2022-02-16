@@ -151,6 +151,24 @@ namespace Aria2Launcher.Resources {
         }
         
         /// <summary>
+        ///   查找类似 Cannot find file 的本地化字符串。
+        /// </summary>
+        public static string CannotFindFile {
+            get {
+                return ResourceManager.GetString("CannotFindFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Download... 的本地化字符串。
+        /// </summary>
+        public static string Download {
+            get {
+                return ResourceManager.GetString("Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Do you need to build a default conf file 的本地化字符串。
         /// </summary>
         public static string Err_BuildConf {
@@ -201,6 +219,15 @@ namespace Aria2Launcher.Resources {
         public static string Exit {
             get {
                 return ResourceManager.GetString("Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Generate 的本地化字符串。
+        /// </summary>
+        public static string Generate {
+            get {
+                return ResourceManager.GetString("Generate", resourceCulture);
             }
         }
         
