@@ -147,7 +147,7 @@
   </data>
   <data name="Browse" xml:space="preserve">
     <value>Browse</value>
-    <comment>主界面</comment>
+    <comment>App 配置面板</comment>
   </data>
   <data name="BtTrackerSource" xml:space="preserve">
     <value>BT Tracker source: </value>

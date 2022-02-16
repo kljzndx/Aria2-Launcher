@@ -131,7 +131,7 @@
   </data>
   <data name="Browse" xml:space="preserve">
     <value>浏览</value>
-    <comment>主界面</comment>
+    <comment>App 配置面板</comment>
   </data>
   <data name="Exit" xml:space="preserve">
     <value>退出</value>
