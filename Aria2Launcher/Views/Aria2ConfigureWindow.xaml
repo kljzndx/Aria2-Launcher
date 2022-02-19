@@ -73,7 +73,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="{Binding Source={StaticResource R}, Path=Strings.BtTrackerSource}" VerticalAlignment="Center"/>
-                <TextBox Grid.Column="1" Text="{Binding AppConfService.TrackerSource}"/>
+                <TextBox Grid.Column="1" Text="{Binding AppConfService.TrackerSource, UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Grid.Column="2" Content="{Binding Source={StaticResource R}, Path=Strings.UpdateTracker}" Command="{Binding UpdateTrackerCommand}" CommandParameter="{Binding AppConfService.TrackerSource}"/>
             </Grid>
             <StackPanel Grid.Column="1" Orientation="Horizontal">
