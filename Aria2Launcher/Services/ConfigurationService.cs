@@ -5,7 +5,9 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+
+using CommunityToolkit.Mvvm.ComponentModel;
+
 using Newtonsoft.Json;
 
 namespace Aria2Launcher.Services
@@ -93,7 +95,7 @@ namespace Aria2Launcher.Services
                 return;
             
             field = newValue;
-            base.RaisePropertyChanged(propertyName);
+            base.OnPropertyChanged(propertyName);
 
             if (!_isUpdating)
                 Save(propertyName);

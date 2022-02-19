@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+
+using CommunityToolkit.Mvvm.ComponentModel;
+
 using Newtonsoft.Json;
 
 namespace Aria2Launcher.Models.SettingModels
@@ -31,7 +34,7 @@ namespace Aria2Launcher.Models.SettingModels
         public string Value
         {
             get => _value;
-            set => Set(ref _value, value.Trim());
+            set => SetProperty(ref _value, value.Trim());
         }
 
         public string DefaultValue { get; }

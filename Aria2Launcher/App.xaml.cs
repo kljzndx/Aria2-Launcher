@@ -3,7 +3,6 @@ using System.Linq;
 using System.Windows;
 using Aria2Launcher.Services;
 using Aria2Launcher.Views;
-using GalaSoft.MvvmLight.Threading;
 using Hardcodet.Wpf.TaskbarNotification;
 
 namespace Aria2Launcher
@@ -13,11 +12,6 @@ namespace Aria2Launcher
     /// </summary>
     public partial class App : Application
     {
-        static App()
-        {
-            DispatcherHelper.Initialize();
-        }
-
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);

@@ -1,7 +1,8 @@
 ﻿using Aria2Launcher.Services;
 
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
+using CommunityToolkit.Mvvm.ComponentModel;
+
+using HappyStudio.Mvvm.Input.Wpf;
 
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ using System.Windows.Forms;
 
 namespace Aria2Launcher.ViewModel
 {
-    public class AppConfigViewModel : ViewModelBase
+    public class AppConfigViewModel : ObservableRecipient
     {
         private bool _falledExe;
         private bool _falledConf;
@@ -51,19 +52,19 @@ namespace Aria2Launcher.ViewModel
         public bool HasAria2Path
         {
             get { return _hasAria2Path; }
-            set { Set(ref _hasAria2Path, value); }
+            set { SetProperty(ref _hasAria2Path, value); }
         }
 
         public bool FalledExe
         {
             get { return _falledExe; }
-            set { Set(ref _falledExe, value); }
+            set { SetProperty(ref _falledExe, value); }
         }
 
         public bool FalledConf
         {
             get { return _falledConf; }
-            set { Set(ref _falledConf, value); }
+            set { SetProperty(ref _falledConf, value); }
         }
 
         private string BrowseFolder()

@@ -5,12 +5,14 @@ using System.Reflection;
 using System.Windows;
 using Aria2Launcher.Services;
 using Aria2Launcher.Views;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
+
+using CommunityToolkit.Mvvm.ComponentModel;
+
+using HappyStudio.Mvvm.Input.Wpf;
 
 namespace Aria2Launcher.ViewModel
 {
-    public class TaskBarViewModel : ViewModelBase
+    public class TaskBarViewModel : ObservableRecipient
     {
         public TaskBarViewModel()
         {
@@ -46,8 +48,8 @@ namespace Aria2Launcher.ViewModel
 
         private void Aria2Service_OnAria2Exited(object sender, EventArgs e)
         {
-            StartAria2Command.RaiseCanExecuteChanged();
-            StopAria2Command.RaiseCanExecuteChanged();
+            StartAria2Command.NotifyCanExecuteChanged();
+            StopAria2Command.NotifyCanExecuteChanged();
         }
     }
 }

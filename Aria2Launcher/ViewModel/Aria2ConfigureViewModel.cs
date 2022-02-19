@@ -5,13 +5,14 @@ using System.Linq;
 
 using Aria2Launcher.Models.SettingModels;
 using Aria2Launcher.Services;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
-using GalaSoft.MvvmLight.Messaging;
+
+using CommunityToolkit.Mvvm.ComponentModel;
+
+using HappyStudio.Mvvm.Input.Wpf;
 
 namespace Aria2Launcher.ViewModel
 {
-    public class Aria2ConfigureViewModel : ViewModelBase
+    public class Aria2ConfigureViewModel : ObservableRecipient
     {
         private Aria2Service _aria2Service;
         private Aria2ConfService _aria2ConfService;
@@ -24,7 +25,7 @@ namespace Aria2Launcher.ViewModel
             string json = File.ReadAllText("./Aria2ConfDoc.json");
             _aria2ConfService = new Aria2ConfService(json);
             
-            UpdateTrackerCommand = new RelayCommand<string>(async s => await _aria2ConfService.UpdateTracker(s),
+            UpdateTrackerCommand = new AsyncRelayCommand<string>(_aria2ConfService.UpdateTracker,
                 s => {
                     if (s != null)
                         return s.StartsWith("http");
@@ -37,12 +38,12 @@ namespace Aria2Launcher.ViewModel
         public SettingGroup SelectGroup
         {
             get => _selectGroup;
-            set => Set(ref _selectGroup, value);
+            set => SetProperty(ref _selectGroup, value);
         }
 
         public ObservableCollection<SettingGroup> SettingGroupList => _aria2ConfService.SettingGroupList;
 
-        public RelayCommand<string> UpdateTrackerCommand { get; }
+        public AsyncRelayCommand<string> UpdateTrackerCommand { get; }
 
         public void Load(string confPath)
         {

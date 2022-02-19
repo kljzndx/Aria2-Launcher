@@ -4,14 +4,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows;
+using System.Windows.Threading;
 
-using Aria2Launcher.Models;
 using Aria2Launcher.Resources;
 
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Threading;
-
-using ObservableObject = GalaSoft.MvvmLight.ObservableObject;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Aria2Launcher.Services
 {
@@ -56,7 +53,7 @@ namespace Aria2Launcher.Services
         public bool IsRunning
         {
             get => _isRunning;
-            set => Set(ref _isRunning, value);
+            set => SetProperty(ref _isRunning, value);
         }
 
         public ConfigurationService Configuration { get; } = ConfigurationService.Current;
@@ -201,17 +198,17 @@ namespace Aria2Launcher.Services
 
         private void Aria2Process_OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
-            DispatcherHelper.RunAsync(() => Log(e.Data));
+            Dispatcher.CurrentDispatcher.BeginInvoke(() => Log(e.Data));
         }
 
         private void Aria2Process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
         {
-            DispatcherHelper.RunAsync(() => LogError(e.Data));
+            Dispatcher.CurrentDispatcher.BeginInvoke(() => LogError(e.Data));
         }
 
         private void Aria2Process_Exited(object sender, EventArgs e)
         {
-            DispatcherHelper.RunAsync(() => 
+            Dispatcher.CurrentDispatcher.BeginInvoke(() => 
             {
                 _aria2Process.CancelOutputRead();
                 _aria2Process.CancelErrorRead();

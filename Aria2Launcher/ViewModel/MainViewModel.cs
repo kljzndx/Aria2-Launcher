@@ -3,13 +3,14 @@ using System.Collections.ObjectModel;
 using System.Windows.Forms;
 using Aria2Launcher.Services;
 using Aria2Launcher.Views;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
-using GalaSoft.MvvmLight.Messaging;
+
+using CommunityToolkit.Mvvm.ComponentModel;
+
+using HappyStudio.Mvvm.Input.Wpf;
 
 namespace Aria2Launcher.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ObservableRecipient
     {
         public MainViewModel()
         {
@@ -33,8 +34,8 @@ namespace Aria2Launcher.ViewModel
 
         private void Aria2Service_OnAria2Exited(object sender, EventArgs e)
         {
-            StartAria2Command.RaiseCanExecuteChanged();
-            StopAria2Command.RaiseCanExecuteChanged();
+            StartAria2Command.NotifyCanExecuteChanged();
+            StopAria2Command.NotifyCanExecuteChanged();
         }
     }
 }
