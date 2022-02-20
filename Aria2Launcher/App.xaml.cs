@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Windows;
 
-using Aria2Launcher.Models;
 using Aria2Launcher.Services;
 using Aria2Launcher.ViewModel;
 using Aria2Launcher.Views;
@@ -26,7 +25,6 @@ namespace Aria2Launcher
 
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
-                .AddSingleton<AppResources>()
                 .AddSingleton<ConfigurationService>(ioc =>
                 {
                     var conf = new ConfigurationService();
