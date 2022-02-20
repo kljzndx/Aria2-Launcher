@@ -31,15 +31,8 @@ namespace Aria2Launcher.Views
 
         private void Aria2ConfigureWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            string path = Path.Combine(ConfigurationService.Current.Aria2DirPath, "aria2.conf");
-            if (Aria2Service.Current.CheckConfExist())
-            {
-                _viewModel.Load(path);
-            }
-            else
-            {
+            if (!_viewModel.Load())
                 this.Close();
-            }
         }
 
         private void Ok_Button_OnClick(object sender, RoutedEventArgs e)

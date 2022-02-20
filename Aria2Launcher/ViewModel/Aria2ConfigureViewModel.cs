@@ -45,10 +45,15 @@ namespace Aria2Launcher.ViewModel
 
         public AsyncRelayCommand<string> UpdateTrackerCommand { get; }
 
-        public void Load(string confPath)
+        public bool Load()
         {
-            _aria2ConfService.Load(confPath);
+            if (!_aria2Service.CheckConfExist())
+                return false;
+
+            _aria2ConfService.Load(_aria2Service.GetConfPath());
             SelectGroup = SettingGroupList.FirstOrDefault();
+
+            return true;
         }
 
         public void Save()
