@@ -18,9 +18,10 @@ namespace Aria2Launcher.ViewModel
         private Aria2ConfService _aria2ConfService;
         private SettingGroup _selectGroup;
 
-        public Aria2ConfigureViewModel()
+        public Aria2ConfigureViewModel(ConfigurationService appConf, Aria2Service a2)
         {
-            _aria2Service = Aria2Service.Current;
+            AppConfService = appConf;
+            _aria2Service = a2;
 
             string json = File.ReadAllText("./Aria2ConfDoc.json");
             _aria2ConfService = new Aria2ConfService(json);
@@ -33,7 +34,7 @@ namespace Aria2Launcher.ViewModel
                 });
         }
 
-        public ConfigurationService AppConfService => ConfigurationService.Current;
+        public ConfigurationService AppConfService { get; }
 
         public SettingGroup SelectGroup
         {

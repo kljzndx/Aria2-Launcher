@@ -3,15 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="clr-namespace:Aria2Launcher.ViewModel"
         xmlns:resource="clr-namespace:Aria2Launcher.Resources"
         mc:Ignorable="d"
         Title="Aria2 Launcher" Width="800" Height="450"
+        DataContext="{Binding Source={StaticResource vms}, Path=Main}"
         StateChanged="Window_StateChanged" Closed="Window_Closed">
-    
-    <Window.DataContext>
-        <vm:MainViewModel/>
-    </Window.DataContext>
     
     <Grid>
         <Grid.RowDefinitions>

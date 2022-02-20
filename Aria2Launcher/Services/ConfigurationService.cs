@@ -17,20 +17,13 @@ namespace Aria2Launcher.Services
         private const string ConfFileName = "Aria2Launcher.json";
         private const string LnkFileName = "Aria2Launcher.lnk";
 
-        public static ConfigurationService Current { get; }
-
-        static ConfigurationService()
-        {
-            Current = new ConfigurationService();
-        }
-
         private bool _isUpdating;
 
         private string _aria2DirPath;
         private string _trackerSource;
         private bool _isAutoStart;
 
-        private ConfigurationService()
+        public ConfigurationService()
         {
             _aria2DirPath = "";
             _trackerSource = "https://trackerslist.com/all.txt";

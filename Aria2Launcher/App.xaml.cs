@@ -1,9 +1,17 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Windows;
+
+using Aria2Launcher.Models;
 using Aria2Launcher.Services;
+using Aria2Launcher.ViewModel;
 using Aria2Launcher.Views;
+
+using CommunityToolkit.Mvvm.DependencyInjection;
+
 using Hardcodet.Wpf.TaskbarNotification;
+
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Aria2Launcher
 {
@@ -16,14 +24,36 @@ namespace Aria2Launcher
         {
             base.OnStartup(e);
 
+            Ioc.Default.ConfigureServices(
+                new ServiceCollection()
+                .AddSingleton<AppResources>()
+                .AddSingleton<ConfigurationService>(ioc =>
+                {
+                    var conf = new ConfigurationService();
+                    conf.Load();
+                    return conf;
+                })
+                .AddSingleton<Aria2Service>()
+
+                .AddSingleton<TaskBarViewModel>()
+                .AddSingleton<MainViewModel>()
+                .AddSingleton<AppConfigViewModel>()
+                .AddSingleton<Aria2ConfigureViewModel>()
+
+                .AddTransient<MainWindow>()
+                .AddTransient<AppConfigWindow>()
+                .AddTransient<Aria2ConfigureWindow>()
+
+                .BuildServiceProvider());
+
             var tb = (TaskbarIcon) FindResource("taskbar");
 
-            ConfigurationService.Current.Load();
-            Aria2Service.Current.ErrorDataReceived += Aria2Service_ErrorDataReceived;
+            var a2 = Ioc.Default.GetRequiredService<Aria2Service>();
+            a2.ErrorDataReceived += Aria2Service_ErrorDataReceived;
 
-            if (Aria2Service.Current.CheckExeExist())
+            if (a2.CheckExeExist())
             {
-                Aria2Service.Current.StartAria2();
+                a2.StartAria2();
             }
             else
             {
@@ -34,8 +64,9 @@ namespace Aria2Launcher
 
         protected override void OnExit(ExitEventArgs e)
         {
-            if (Aria2Service.Current.IsRunning)
-                Aria2Service.Current.StopAria2();
+            var a2 = Ioc.Default.GetRequiredService<Aria2Service>();
+            if (a2.IsRunning)
+                a2.StopAria2();
 
             base.OnExit(e);
         }

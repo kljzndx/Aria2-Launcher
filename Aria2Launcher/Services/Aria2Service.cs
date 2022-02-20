@@ -9,6 +9,7 @@ using System.Windows.Threading;
 using Aria2Launcher.Resources;
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 
 namespace Aria2Launcher.Services
 {
@@ -17,8 +18,8 @@ namespace Aria2Launcher.Services
         private const string ExeFileName = "aria2c.exe";
         private const string ConfFileName = "aria2.conf";
 
-        public static Aria2Service Current { get; }
-        
+        private ConfigurationService _configuration;
+
         private bool _isRunning;
         private bool _isRestarting;
         private readonly Process _aria2Process;
@@ -29,13 +30,10 @@ namespace Aria2Launcher.Services
         public event EventHandler CheckExeFalled;
         public event EventHandler CheckConfFalled;
 
-        static Aria2Service()
+        public Aria2Service(ConfigurationService appConf)
         {
-            Current = new Aria2Service();
-        }
+            _configuration = appConf;
 
-        private Aria2Service()
-        {
             OutputList = new ObservableCollection<string>();
             _aria2Process = new Process();
 
@@ -55,8 +53,6 @@ namespace Aria2Launcher.Services
             get => _isRunning;
             set => SetProperty(ref _isRunning, value);
         }
-
-        public ConfigurationService Configuration { get; } = ConfigurationService.Current;
 
         public ObservableCollection<string> OutputList { get; }
 
@@ -83,12 +79,12 @@ namespace Aria2Launcher.Services
 
         public string GetExePath()
         {
-            return Path.Combine(Configuration.Aria2DirPath, ExeFileName);
+            return Path.Combine(_configuration.Aria2DirPath, ExeFileName);
         }
 
         public string GetConfPath()
         {
-            return Path.Combine(Configuration.Aria2DirPath, ConfFileName);
+            return Path.Combine(_configuration.Aria2DirPath, ConfFileName);
         }
 
         public bool CheckExeExist()
@@ -131,13 +127,13 @@ namespace Aria2Launcher.Services
 
         private bool SetupProcess()
         {
-            string exePath = Path.Combine(Configuration.Aria2DirPath, ExeFileName);
-            string confPath = Path.Combine(Configuration.Aria2DirPath, ConfFileName);
+            string exePath = Path.Combine(_configuration.Aria2DirPath, ExeFileName);
+            string confPath = Path.Combine(_configuration.Aria2DirPath, ConfFileName);
 
             if (CheckExeExist())
             {
                 _aria2Process.StartInfo.FileName = exePath;
-                _aria2Process.StartInfo.WorkingDirectory = Configuration.Aria2DirPath;
+                _aria2Process.StartInfo.WorkingDirectory = _configuration.Aria2DirPath;
 
                 Log(StringResource.Log_FindAria2Exe);
             }

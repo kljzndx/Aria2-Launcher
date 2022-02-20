@@ -12,6 +12,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Aria2Launcher.Services;
 using Aria2Launcher.ViewModel;
+
+using CommunityToolkit.Mvvm.DependencyInjection;
+
 using Path = System.IO.Path;
 
 namespace Aria2Launcher.Views
@@ -26,7 +29,7 @@ namespace Aria2Launcher.Views
         public Aria2ConfigureWindow()
         {
             InitializeComponent();
-            _viewModel = (Aria2ConfigureViewModel) this.DataContext;
+            _viewModel = Ioc.Default.GetRequiredService<Aria2ConfigureViewModel>();
         }
 
         private void Aria2ConfigureWindow_OnLoaded(object sender, RoutedEventArgs e)

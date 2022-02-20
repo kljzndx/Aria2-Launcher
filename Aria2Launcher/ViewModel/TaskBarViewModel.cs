@@ -14,8 +14,11 @@ namespace Aria2Launcher.ViewModel
 {
     public class TaskBarViewModel : ObservableRecipient
     {
-        public TaskBarViewModel()
+        public TaskBarViewModel(ConfigurationService appConf, Aria2Service a2)
         {
+            Configuration = appConf;
+            Aria2 = a2;
+
             StartAria2Command = new RelayCommand(Aria2.StartAria2, () => !Aria2.IsRunning);
             StopAria2Command = new RelayCommand(Aria2.StopAria2, () => Aria2.IsRunning);
 
@@ -35,8 +38,8 @@ namespace Aria2Launcher.ViewModel
             Aria2.Aria2Exited += Aria2Service_OnAria2Exited;
         }
 
-        public Aria2Service Aria2 { get; } = Aria2Service.Current;
-        public ConfigurationService Configuration { get; } = ConfigurationService.Current;
+        public Aria2Service Aria2 { get; }
+        public ConfigurationService Configuration { get; }
 
         public RelayCommand StartAria2Command { get; }
         public RelayCommand StopAria2Command { get; }

@@ -22,10 +22,10 @@ namespace Aria2Launcher.ViewModel
         private bool _falledConf;
         private bool _hasAria2Path;
 
-        public AppConfigViewModel()
+        public AppConfigViewModel(ConfigurationService appConf, Aria2Service a2)
         {
-            Aria2 = Aria2Service.Current;
-            Configuration = ConfigurationService.Current;
+            Configuration = appConf;
+            Aria2 = a2;
 
             CheckAria2Path();
             Configuration.PropertyChanged += Configuration_PropertyChanged;

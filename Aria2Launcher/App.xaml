@@ -16,12 +16,9 @@
             </ResourceDictionary.MergedDictionaries>
 
             <model:AppResources x:Key="R"/>
+            <vm:ViewModelLocator x:Key="vms"/>
 
-            <tb:TaskbarIcon x:Key="taskbar" IconSource="Resources/logo.ico" DoubleClickCommand="{Binding ShowWindowCommand}">
-                <tb:TaskbarIcon.DataContext>
-                    <vm:TaskBarViewModel/>
-                </tb:TaskbarIcon.DataContext>
-
+            <tb:TaskbarIcon x:Key="taskbar" DataContext="{Binding Source={StaticResource vms}, Path=TaskBar}" IconSource="Resources/logo.ico" DoubleClickCommand="{Binding ShowWindowCommand}">
                 <tb:TaskbarIcon.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="{Binding Source={StaticResource R}, Path=Strings.StartAria2}" Command="{Binding StartAria2Command}"/>

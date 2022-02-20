@@ -3,15 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="clr-namespace:Aria2Launcher.ViewModel"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
-        Title="AppConfigWindow" Height="450" Width="800">
+        Title="AppConfigWindow" Height="450" Width="800"
+        DataContext="{Binding Source={StaticResource vms}, Path=AppConf}">
     
-    <Window.DataContext>
-        <vm:AppConfigViewModel/>
-    </Window.DataContext>
-
     <Window.Resources>
         <Style x:Key="key_tb" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Left" />
