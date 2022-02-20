@@ -16,7 +16,7 @@ namespace Aria2Launcher.ViewModel
         {
             StartAria2Command = new RelayCommand(Aria2.StartAria2, () => !Aria2.IsRunning);
             StopAria2Command = new RelayCommand(Aria2.StopAria2, () => Aria2.IsRunning);
-            ShowAria2ConfWindowCommand = new RelayCommand(() => new Aria2ConfigureWindow().Show());
+            ShowAria2ConfWindowCommand = new RelayCommand(() => new Aria2ConfigureWindow().Show(), Aria2.CheckConfExist);
             ShowAppConfWindowCommand = new RelayCommand(() => new AppConfigWindow().Show());
 
             Aria2.Aria2Exited += Aria2Service_OnAria2Exited;
