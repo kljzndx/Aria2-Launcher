@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Aria2Launcher.Models
+namespace Aria2Launcher.ViewModel
 {
     public class AppResources
     {

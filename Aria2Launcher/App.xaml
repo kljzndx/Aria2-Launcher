@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:tb="http://www.hardcodet.net/taskbar"
              xmlns:vm="clr-namespace:Aria2Launcher.ViewModel"
-             xmlns:model="clr-namespace:Aria2Launcher.Models"
-             xmlns:resource="clr-namespace:Aria2Launcher.Resources"
              xmlns:hc="https://handyorg.github.io/handycontrol"
              ShutdownMode="OnExplicitShutdown">
     
@@ -15,7 +13,7 @@
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <model:AppResources x:Key="R"/>
+            <vm:AppResources x:Key="R"/>
             <vm:ViewModelLocator x:Key="vms"/>
 
             <tb:TaskbarIcon x:Key="taskbar" DataContext="{Binding Source={StaticResource vms}, Path=TaskBar}" IconSource="Resources/logo.ico" DoubleClickCommand="{Binding ShowWindowCommand}">
