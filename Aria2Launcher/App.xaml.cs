@@ -52,8 +52,7 @@ namespace Aria2Launcher
             }
             else
             {
-                MainWindow = new MainWindow();
-                MainWindow.Show();
+                new MainWindow().Show();
             }
         }
 
@@ -69,10 +68,7 @@ namespace Aria2Launcher
         private void Aria2Service_ErrorDataReceived(object sender, string e)
         {
             if (Windows.ContainsMainWindow())
-            {
-                MainWindow = new MainWindow();
-                MainWindow.Show();
-            }
+                new MainWindow().Show();
         }
     }
 }
