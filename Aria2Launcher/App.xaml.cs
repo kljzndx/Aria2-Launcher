@@ -38,10 +38,6 @@ namespace Aria2Launcher
                 .AddSingleton<AppConfigViewModel>()
                 .AddSingleton<Aria2ConfigureViewModel>()
 
-                .AddTransient<MainWindow>()
-                .AddTransient<AppConfigWindow>()
-                .AddTransient<Aria2ConfigureWindow>()
-
                 .BuildServiceProvider());
 
             var tb = (TaskbarIcon) FindResource("taskbar");
