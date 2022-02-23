@@ -22,7 +22,7 @@ namespace Aria2Launcher
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
+            
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
                 .AddSingleton<ConfigurationService>(ioc =>
@@ -49,7 +49,7 @@ namespace Aria2Launcher
             var a2 = Ioc.Default.GetRequiredService<Aria2Service>();
             a2.ErrorDataReceived += Aria2Service_ErrorDataReceived;
 
-            if (a2.CheckExeExist())
+            if (e.Args.Contains("--quiet") && a2.CheckExeExist())
             {
                 a2.StartAria2();
             }
