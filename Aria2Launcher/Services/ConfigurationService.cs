@@ -79,7 +79,7 @@ namespace Aria2Launcher.Services
             if (!needAutoStart)
                 return;
 
-            CreateShortcut(lnkPath);
+            CreateShortcut(lnkPath, "--quiet");
         }
 
         private void SetSetting<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
