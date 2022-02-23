@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using Aria2Launcher.Services;
+using Aria2Launcher.ViewModel.Extensions;
 using Aria2Launcher.Views;
 
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -24,7 +25,7 @@ namespace Aria2Launcher.ViewModel
             StopAria2Command = new RelayCommand(Aria2.StopAria2, () => Aria2.IsRunning);
 
             ShowWindowCommand = new RelayCommand(() => new MainWindow().Show(), 
-                () => Application.Current.Windows.Cast<Window>().All(w => w is not MainWindow));
+                () => Application.Current.Windows.ContainsMainWindow());
 
             ExitAppCommand = new RelayCommand(() =>
             {

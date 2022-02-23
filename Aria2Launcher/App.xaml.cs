@@ -4,6 +4,7 @@ using System.Windows;
 
 using Aria2Launcher.Services;
 using Aria2Launcher.ViewModel;
+using Aria2Launcher.ViewModel.Extensions;
 using Aria2Launcher.Views;
 
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -67,7 +68,7 @@ namespace Aria2Launcher
 
         private void Aria2Service_ErrorDataReceived(object sender, string e)
         {
-            if (MainWindow == null)
+            if (Windows.ContainsMainWindow())
             {
                 MainWindow = new MainWindow();
                 MainWindow.Show();
