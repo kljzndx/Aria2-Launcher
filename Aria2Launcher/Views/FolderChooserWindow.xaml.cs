@@ -1,4 +1,7 @@
 ﻿using Aria2Launcher.Services;
+using Aria2Launcher.ViewModel;
+
+using CommunityToolkit.Mvvm.DependencyInjection;
 
 using System;
 using System.Collections.Generic;
@@ -21,9 +24,22 @@ namespace Aria2Launcher.Views
     /// </summary>
     public partial class FolderChooserWindow : Window
     {
+        private FolderChooserViewModel _vm;
+
         public FolderChooserWindow()
         {
             InitializeComponent();
+            _vm = Ioc.Default.GetRequiredService<FolderChooserViewModel>();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            if (_vm.IsNoExe)
+                Application.Current.Shutdown();
+            else
+                new MainWindow().Show();
+
+            base.OnClosed(e);
         }
     }
 }
