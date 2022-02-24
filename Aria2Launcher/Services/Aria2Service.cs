@@ -153,7 +153,7 @@ namespace Aria2Launcher.Services
             {
                 _aria2Process.StartInfo.Arguments = $"--enable-rpc";
                 CheckConfFalled?.Invoke(this, EventArgs.Empty);
-                LogError(StringResource.Err_NoAria2Conf + ", " + StringResource.Log_Aria2RpcMode);
+                Log(StringResource.Err_NoAria2Conf + ", " + StringResource.Log_Aria2RpcMode);
             }
 
             _aria2Process.StartInfo.StandardOutputEncoding = Encoding.UTF8;
