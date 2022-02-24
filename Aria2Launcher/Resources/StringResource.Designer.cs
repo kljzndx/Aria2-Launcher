@@ -178,24 +178,6 @@ namespace Aria2Launcher.Resources {
         }
         
         /// <summary>
-        ///   查找类似 Do you need to build a default conf file 的本地化字符串。
-        /// </summary>
-        public static string Err_BuildConf {
-            get {
-                return ResourceManager.GetString("Err_BuildConf", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Do you need to download Aria2? 的本地化字符串。
-        /// </summary>
-        public static string Err_DownloadAria2 {
-            get {
-                return ResourceManager.GetString("Err_DownloadAria2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 Download failed, error code: 的本地化字符串。
         /// </summary>
         public static string Err_GetTracker {

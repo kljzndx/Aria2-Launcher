@@ -137,10 +137,6 @@
     <value>退出</value>
     <comment>任务栏</comment>
   </data>
-  <data name="Err_DownloadAria2" xml:space="preserve">
-    <value>你是否需要下载 Aria2?</value>
-    <comment>Aria2Service</comment>
-  </data>
   <data name="ShowWindow" xml:space="preserve">
     <value>显示窗口</value>
     <comment>任务栏</comment>
@@ -152,10 +148,6 @@
   <data name="StopAria2" xml:space="preserve">
     <value>停止 Aria2</value>
     <comment>主界面 &amp; 任务栏</comment>
-  </data>
-  <data name="Err_BuildConf" xml:space="preserve">
-    <value>你是否需要生成默认配置文件</value>
-    <comment>Aria2Service</comment>
   </data>
   <data name="Err_NoAria2Conf" xml:space="preserve">
     <value>找不到 aria2.conf</value>

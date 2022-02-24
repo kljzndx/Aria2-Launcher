@@ -169,14 +169,6 @@
     <value>Download...</value>
     <comment>App 配置面板</comment>
   </data>
-  <data name="Err_BuildConf" xml:space="preserve">
-    <value>Do you need to build a default conf file</value>
-    <comment>Aria2Service</comment>
-  </data>
-  <data name="Err_DownloadAria2" xml:space="preserve">
-    <value>Do you need to download Aria2?</value>
-    <comment>Aria2Service</comment>
-  </data>
   <data name="Err_GetTracker" xml:space="preserve">
     <value>Download failed, error code:</value>
     <comment>Aria2ConfService</comment>
