@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Aria2Launcher.Views"
         mc:Ignorable="d"
-        Title="Choose folder" Height="140" Width="400"
+        Title="Choose folder" Height="140" Width="400" ResizeMode="CanMinimize"
         DataContext="{Binding Source={StaticResource vms}, Path=FolderChooser}">
 
     <Grid>
