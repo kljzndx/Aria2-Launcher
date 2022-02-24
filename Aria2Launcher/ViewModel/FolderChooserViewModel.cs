@@ -30,7 +30,7 @@ namespace Aria2Launcher.ViewModel
 
         public ConfigurationService AppConf { get; }
 
-        public bool IsNoExe => !_aria2Service.CheckExeExist();
+        public bool IsNoExe => !string.IsNullOrEmpty(AppConf.Aria2DirPath) && !_aria2Service.CheckExeExist();
 
         public RelayCommand BrowseCommand { get; }
         public RelayCommand DownloadCommand { get; }
