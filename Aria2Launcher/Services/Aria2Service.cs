@@ -27,9 +27,6 @@ namespace Aria2Launcher.Services
         public event EventHandler<string> ErrorDataReceived;
         public event EventHandler Aria2Exited;
 
-        public event EventHandler CheckExeFalled;
-        public event EventHandler CheckConfFalled;
-
         public Aria2Service(ConfigurationService appConf)
         {
             _configuration = appConf;
@@ -139,7 +136,6 @@ namespace Aria2Launcher.Services
             }
             else
             {
-                CheckExeFalled?.Invoke(this, EventArgs.Empty);
                 LogError(StringResource.Err_NoAria2Exe);
                 return false;
             }
@@ -152,7 +148,6 @@ namespace Aria2Launcher.Services
             else
             {
                 _aria2Process.StartInfo.Arguments = $"--enable-rpc";
-                CheckConfFalled?.Invoke(this, EventArgs.Empty);
                 Log(StringResource.Err_NoAria2Conf + ", " + StringResource.Log_Aria2RpcMode);
             }
 
