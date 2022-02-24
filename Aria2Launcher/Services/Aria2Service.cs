@@ -89,18 +89,7 @@ namespace Aria2Launcher.Services
             string exePath = GetExePath();
 
             if (!File.Exists(exePath))
-            {
-                //if (MessageBox.Show(StringResource.Err_DownloadAria2, StringResource.Err_NoAria2Exe, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                //{
-                //    using (var process = new Process())
-                //    {
-                //        process.StartInfo.FileName = "https://github.com/aria2/aria2/releases/latest";
-                //        process.StartInfo.UseShellExecute = true;
-                //        process.Start();
-                //    }
-                //}
                 return false;
-            }
 
             return true;
         }
@@ -110,14 +99,7 @@ namespace Aria2Launcher.Services
             string confPath = GetConfPath();
 
             if (!File.Exists(confPath))
-            {
-                //if (MessageBox.Show(StringResource.Err_BuildConf, StringResource.Err_NoAria2Conf, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                //{
-                //    File.WriteAllText(confPath, "enable-rpc=true");
-                //    return true;
-                //}
                 return false;
-            }
 
             return true;
         }
