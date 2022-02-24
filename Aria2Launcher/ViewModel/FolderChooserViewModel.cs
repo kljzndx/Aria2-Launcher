@@ -35,6 +35,8 @@ namespace Aria2Launcher.ViewModel
         public RelayCommand BrowseCommand { get; }
         public RelayCommand DownloadCommand { get; }
 
+        public bool CheckAria2ExeExist() => _aria2Service.CheckExeExist();
+
         private void AppConf_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(AppConf.Aria2DirPath))

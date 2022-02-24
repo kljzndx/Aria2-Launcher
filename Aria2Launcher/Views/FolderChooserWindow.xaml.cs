@@ -34,10 +34,10 @@ namespace Aria2Launcher.Views
 
         protected override void OnClosed(EventArgs e)
         {
-            if (_vm.IsNoExe)
-                Application.Current.Shutdown();
-            else
+            if (_vm.CheckAria2ExeExist())
                 new MainWindow().Show();
+            else
+                Application.Current.Shutdown();
 
             base.OnClosed(e);
         }
