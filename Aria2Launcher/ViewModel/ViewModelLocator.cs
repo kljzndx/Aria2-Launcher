@@ -14,6 +14,7 @@ namespace Aria2Launcher.ViewModel
         public AppConfigViewModel AppConf => Ioc.Default.GetRequiredService<AppConfigViewModel>();
         public Aria2ConfigureViewModel Aria2Conf => Ioc.Default.GetRequiredService<Aria2ConfigureViewModel>();
         public TaskBarViewModel TaskBar => Ioc.Default.GetRequiredService<TaskBarViewModel>();
+        public FolderChooserViewModel FolderChooser => Ioc.Default.GetRequiredService<FolderChooserViewModel>();
 
     }
 }

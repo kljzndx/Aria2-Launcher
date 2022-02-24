@@ -160,6 +160,15 @@ namespace Aria2Launcher.Resources {
         }
         
         /// <summary>
+        ///   查找类似 Please choose Aria2 program folder 的本地化字符串。
+        /// </summary>
+        public static string ChooseAria2Dir {
+            get {
+                return ResourceManager.GetString("ChooseAria2Dir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Download... 的本地化字符串。
         /// </summary>
         public static string Download {

@@ -38,6 +38,7 @@ namespace Aria2Launcher
                 .AddSingleton<MainViewModel>()
                 .AddSingleton<AppConfigViewModel>()
                 .AddSingleton<Aria2ConfigureViewModel>()
+                .AddSingleton<FolderChooserViewModel>()
 
                 .BuildServiceProvider());
 
