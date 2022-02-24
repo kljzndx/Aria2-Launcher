@@ -5,6 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -47,6 +48,8 @@ namespace Aria2Launcher.Services
             set => SetSetting(ref _isAutoStart, value);
         }
 
+        #region 自动启动
+
         /// <summary>
         /// 为本程序创建一个快捷方式。
         /// </summary>
@@ -81,6 +84,31 @@ namespace Aria2Launcher.Services
 
             CreateShortcut(lnkPath, "--quiet");
         }
+
+        #endregion
+        #region Aria2
+
+        public void BrowseAria2Folder()
+        {
+            using (var picker = new FolderBrowserDialog())
+            {
+                picker.RootFolder = Environment.SpecialFolder.MyComputer;
+                var dialogResult = picker.ShowDialog();
+                Aria2DirPath = dialogResult == DialogResult.OK ? picker.SelectedPath : Aria2DirPath;
+            }
+        }
+
+        public void ViewAria2OfficialSite()
+        {
+            using (var process = new Process())
+            {
+                process.StartInfo.FileName = "https://github.com/aria2/aria2/releases/latest";
+                process.StartInfo.UseShellExecute = true;
+                process.Start();
+            }
+        }
+
+        #endregion
 
         private void SetSetting<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
         {

@@ -30,8 +30,8 @@ namespace Aria2Launcher.ViewModel
             CheckAria2Path();
             Configuration.PropertyChanged += Configuration_PropertyChanged;
 
-            BrowseAria2DirCommand = new RelayCommand(() => Configuration.Aria2DirPath = BrowseFolder());
-            ViewOfficialSiteCommand = new RelayCommand(ViewOfficialSite);
+            BrowseAria2DirCommand = new RelayCommand(Configuration.BrowseAria2Folder);
+            ViewOfficialSiteCommand = new RelayCommand(Configuration.ViewAria2OfficialSite);
             GenerateConfFileCommand = new RelayCommand(() =>
             {
                 File.WriteAllText(Aria2.GetConfPath(), "enable-rpc=true");
@@ -67,31 +67,11 @@ namespace Aria2Launcher.ViewModel
             set { SetProperty(ref _falledConf, value); }
         }
 
-        private string BrowseFolder()
-        {
-            using (var picker = new FolderBrowserDialog())
-            {
-                picker.RootFolder = Environment.SpecialFolder.MyComputer;
-                var dialogResult = picker.ShowDialog();
-                return dialogResult == DialogResult.OK ? picker.SelectedPath : Configuration.Aria2DirPath;
-            }
-        }
-
         public void CheckAria2Path()
         {
             HasAria2Path = !string.IsNullOrWhiteSpace(Configuration.Aria2DirPath);
             FalledExe = !Aria2.CheckExeExist();
             FalledConf = !Aria2.CheckConfExist();
-        }
-
-        public void ViewOfficialSite()
-        {
-            using (var process = new Process())
-            {
-                process.StartInfo.FileName = "https://github.com/aria2/aria2/releases/latest";
-                process.StartInfo.UseShellExecute = true;
-                process.Start();
-            }
         }
 
         private void Configuration_PropertyChanged(object sender, PropertyChangedEventArgs e)
