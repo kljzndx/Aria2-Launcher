@@ -47,14 +47,19 @@ namespace Aria2Launcher
             var a2 = Ioc.Default.GetRequiredService<Aria2Service>();
             a2.ErrorDataReceived += Aria2Service_ErrorDataReceived;
 
-            if (e.Args.Contains("--quiet") && a2.CheckExeExist())
+            bool isExeExisted = a2.CheckExeExist();
+            if (e.Args.Contains("--quiet") && isExeExisted)
             {
                 a2.StartAria2();
+                return;
             }
-            else
+            if (!isExeExisted)
             {
-                new MainWindow().Show();
+                new FolderChooserWindow().Show();
+                return;
             }
+            
+            new MainWindow().Show();
         }
 
         protected override void OnExit(ExitEventArgs e)
