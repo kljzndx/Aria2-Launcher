@@ -229,4 +229,8 @@
     <value>请选择 Aria2 程序文件夹</value>
     <comment>文件夹选择器</comment>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>关闭</value>
+    <comment>文件夹选择器</comment>
+  </data>
 </root>

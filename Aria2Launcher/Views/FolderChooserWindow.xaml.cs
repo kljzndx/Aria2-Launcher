@@ -41,5 +41,10 @@ namespace Aria2Launcher.Views
 
             base.OnClosed(e);
         }
+
+        private void Close_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

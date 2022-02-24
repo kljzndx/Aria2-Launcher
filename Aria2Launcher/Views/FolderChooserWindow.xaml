@@ -5,25 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Aria2Launcher.Views"
         mc:Ignorable="d"
-        Title="Choose folder" Height="90" Width="400"
+        Title="Choose folder" Height="140" Width="400"
         DataContext="{Binding Source={StaticResource vms}, Path=FolderChooser}">
 
-    <StackPanel>
-        <TextBlock Text="{Binding Source={StaticResource R}, Path=Strings.ChooseAria2Dir}"/>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
-            <TextBox Text="{Binding AppConf.Aria2DirPath, UpdateSourceTrigger=PropertyChanged}"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
             
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <Button Command="{Binding BrowseCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.Browse}"/>
-                <Button Command="{Binding DownloadCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.Download}"/>
-            </StackPanel>
-        </Grid>
-        <TextBlock Foreground="Red" Visibility="{Binding IsNoExe, Converter={StaticResource Boolean2VisibilityConverter}}"
+        <StackPanel>
+            <TextBlock Text="{Binding Source={StaticResource R}, Path=Strings.ChooseAria2Dir}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Text="{Binding AppConf.Aria2DirPath, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button Command="{Binding BrowseCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.Browse}"/>
+                    <Button Command="{Binding DownloadCommand}" Content="{Binding Source={StaticResource R}, Path=Strings.Download}"/>
+                </StackPanel>
+            </Grid>
+            <TextBlock Foreground="Red" Visibility="{Binding IsNoExe, Converter={StaticResource Boolean2VisibilityConverter}}"
                    Text="{Binding Source={StaticResource R}, Path=Strings.Err_NoAria2Exe}"/>
-    </StackPanel>
+        </StackPanel>
+        
+        <Button x:Name="Close_Button" Grid.Row="1" HorizontalAlignment="Right" Click="Close_Button_Click"
+                Content="{Binding Source={StaticResource R}, Path=Strings.Close}"/>
+    </Grid>
 </Window>

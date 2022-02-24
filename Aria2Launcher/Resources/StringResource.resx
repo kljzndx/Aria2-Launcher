@@ -165,6 +165,10 @@
     <value>Please choose Aria2 program folder</value>
     <comment>文件夹选择器</comment>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+    <comment>文件夹选择器</comment>
+  </data>
   <data name="Download" xml:space="preserve">
     <value>Download...</value>
     <comment>App 配置面板</comment>

@@ -169,6 +169,15 @@ namespace Aria2Launcher.Resources {
         }
         
         /// <summary>
+        ///   查找类似 Close 的本地化字符串。
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Download... 的本地化字符串。
         /// </summary>
         public static string Download {
