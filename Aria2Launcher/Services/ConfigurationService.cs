@@ -16,13 +16,14 @@ namespace Aria2Launcher.Services
     public partial class ConfigurationService : ObservableObject
     {
         private const string ConfFileName = "Aria2Launcher.json";
-        private const string LnkFileName = "Aria2Launcher.lnk";
+        private const string LnkFileName = "Aria2 Launcher.lnk";
 
         private bool _isUpdating;
 
         private string _aria2DirPath;
         private string _trackerSource;
         private bool _isAutoStart;
+        private bool _isOldAutoStartRemoved;
 
         public ConfigurationService()
         {
@@ -46,6 +47,12 @@ namespace Aria2Launcher.Services
         {
             get => _isAutoStart;
             set => SetSetting(ref _isAutoStart, value);
+        }
+
+        public bool IsOldAutoStartRemoved
+        {
+            get => _isOldAutoStartRemoved;
+            set => SetSetting(ref _isOldAutoStartRemoved, value);
         }
 
         private void SetSetting<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
@@ -88,6 +95,15 @@ namespace Aria2Launcher.Services
                 var text = File.ReadAllText(confPath);
                 var service = JsonConvert.DeserializeObject<ConfigurationService>(text);
                 Update(service);
+
+                if (!IsOldAutoStartRemoved)
+                {
+                    RemoveOldAutoStart();
+                    IsOldAutoStartRemoved = true;
+
+                    if (IsAutoStart)
+                        SwitchAutoStart(true);
+                }
             }
             else
                 Save();

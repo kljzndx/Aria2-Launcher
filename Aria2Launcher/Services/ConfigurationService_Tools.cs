@@ -38,6 +38,13 @@ namespace Aria2Launcher.Services
             shortcut.Save();
         }
 
+        public void RemoveOldAutoStart()
+        {
+            var lnkPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "Aria2Launcher.lnk");
+            if (File.Exists(lnkPath))
+                File.Delete(lnkPath);
+        }
+
         public void SwitchAutoStart(bool needAutoStart)
         {
             var lnkPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), LnkFileName);
