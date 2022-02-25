@@ -26,12 +26,7 @@ namespace Aria2Launcher
             
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
-                .AddSingleton<ConfigurationService>(ioc =>
-                {
-                    var conf = new ConfigurationService();
-                    conf.Load();
-                    return conf;
-                })
+                .AddSingleton<ConfigurationService>(ioc => ConfigurationService.GetService())
                 .AddSingleton<Aria2Service>()
 
                 .AddSingleton<TaskBarViewModel>()
