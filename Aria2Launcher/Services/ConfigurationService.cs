@@ -18,7 +18,7 @@ namespace Aria2Launcher.Services
         private const string ConfFileName = "Aria2Launcher.json";
         private const string LnkFileName = "Aria2 Launcher.lnk";
 
-        private bool _isUpdating;
+        private bool _isLoaded;
 
         private string _aria2DirPath;
         private string _trackerSource;
@@ -63,7 +63,7 @@ namespace Aria2Launcher.Services
             field = newValue;
             base.OnPropertyChanged(propertyName);
 
-            if (!_isUpdating)
+            if (_isLoaded)
                 Save();
         }
 
@@ -104,6 +104,8 @@ namespace Aria2Launcher.Services
                 service = new ConfigurationService();
                 service.Save();
             }
+
+            service._isLoaded = true;
             return service;
         }
     }
