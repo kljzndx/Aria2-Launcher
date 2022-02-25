@@ -64,53 +64,12 @@ namespace Aria2Launcher.Services
             base.OnPropertyChanged(propertyName);
 
             if (!_isUpdating)
-                Save(propertyName);
-        }
-
-        private void Update(ConfigurationService newService)
-        {
-            _isUpdating = true;
-
-            var props = this.GetType().GetProperties();
-
-            foreach (var info in props)
-            {
-                if (!info.CanWrite || info.GetCustomAttribute<JsonIgnoreAttribute>() != null)
-                    continue;
-
-                var newVal = info.GetValue(newService);
-                info.SetValue(this, newVal);
-            }
-
-            _isUpdating = false;
+                Save();
         }
 
         public static string GetConfPath()
         {
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfFileName);
-        }
-
-        public void Load()
-        {
-            var confPath = GetConfPath();
-            
-            if (File.Exists(confPath))
-            {
-                var text = File.ReadAllText(confPath);
-                var service = JsonConvert.DeserializeObject<ConfigurationService>(text);
-                Update(service);
-
-                if (!IsOldAutoStartRemoved)
-                {
-                    RemoveOldAutoStart();
-                    IsOldAutoStartRemoved = true;
-
-                    if (IsAutoStart)
-                        SwitchAutoStart(true);
-                }
-            }
-            else
-                Save();
         }
 
         public static ConfigurationService GetService()
@@ -140,7 +99,7 @@ namespace Aria2Launcher.Services
             return service;
         }
 
-        public void Save([CallerMemberName] string propertyName = null)
+        public void Save()
         {
             var confPath = GetConfPath();
 
