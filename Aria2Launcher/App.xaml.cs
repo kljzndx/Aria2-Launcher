@@ -68,7 +68,7 @@ namespace Aria2Launcher
 
         private void Aria2Service_ErrorDataReceived(object sender, string e)
         {
-            if (Windows.ContainsMainWindow())
+            if (Windows.ContainsWindow<MainWindow>())
                 new MainWindow().Show();
         }
     }
