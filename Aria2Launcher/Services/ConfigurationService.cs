@@ -67,6 +67,14 @@ namespace Aria2Launcher.Services
                 Save();
         }
 
+        public void Save()
+        {
+            var confPath = GetConfPath();
+
+            var text = JsonConvert.SerializeObject(this);
+            File.WriteAllText(confPath, text);
+        }
+
         public static string GetConfPath()
         {
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfFileName);
@@ -97,14 +105,6 @@ namespace Aria2Launcher.Services
                 service.Save();
             }
             return service;
-        }
-
-        public void Save()
-        {
-            var confPath = GetConfPath();
-
-            var text = JsonConvert.SerializeObject(this);
-            File.WriteAllText(confPath, text);
         }
     }
 }
