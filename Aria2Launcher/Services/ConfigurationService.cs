@@ -113,6 +113,33 @@ namespace Aria2Launcher.Services
                 Save();
         }
 
+        public static ConfigurationService GetService()
+        {
+            var confPath = GetConfPath();
+            ConfigurationService service;
+
+            if (File.Exists(confPath))
+            {
+                var text = File.ReadAllText(confPath);
+                service = JsonConvert.DeserializeObject<ConfigurationService>(text);
+
+                if (!service.IsOldAutoStartRemoved)
+                {
+                    service.RemoveOldAutoStart();
+                    service.IsOldAutoStartRemoved = true;
+
+                    if (service.IsAutoStart)
+                        service.SwitchAutoStart(true);
+                }
+            }
+            else
+            {
+                service = new ConfigurationService();
+                service.Save();
+            }
+            return service;
+        }
+
         public void Save([CallerMemberName] string propertyName = null)
         {
             var confPath = GetConfPath();
