@@ -11,10 +11,10 @@ namespace Aria2Launcher.ViewModel.Extensions
 {
     public static class WindowCollectionExtension
     {
-        public static bool ContainsMainWindow(this WindowCollection collection)
+        public static bool ContainsWindow<TWindow>(this WindowCollection collection)
         {
             foreach (Window item in collection)
-                if (item is MainWindow)
+                if (item is TWindow)
                     return true;
 
             return false;

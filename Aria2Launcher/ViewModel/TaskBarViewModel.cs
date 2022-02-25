@@ -25,7 +25,7 @@ namespace Aria2Launcher.ViewModel
             StopAria2Command = new RelayCommand(Aria2.StopAria2, () => Aria2.IsRunning);
 
             ShowWindowCommand = new RelayCommand(() => new MainWindow().Show(), 
-                () => !Application.Current.Windows.ContainsMainWindow());
+                () => !(Application.Current.Windows.ContainsWindow<MainWindow>() || Application.Current.Windows.ContainsWindow<FolderChooserWindow>()));
 
             ExitAppCommand = new RelayCommand(() =>
             {
