@@ -94,6 +94,7 @@ namespace Aria2Launcher.Services
                 {
                     service.RemoveOldAutoStart();
                     service.IsOldAutoStartRemoved = true;
+                    service.Save();
 
                     if (service.IsAutoStart)
                         service.SwitchAutoStart(true);
