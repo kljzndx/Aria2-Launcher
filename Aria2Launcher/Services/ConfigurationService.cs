@@ -85,10 +85,14 @@ namespace Aria2Launcher.Services
             _isUpdating = false;
         }
 
+        public static string GetConfPath()
+        {
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfFileName);
+        }
+
         public void Load()
         {
-            string dirPath = AppDomain.CurrentDomain.BaseDirectory;
-            var confPath = dirPath + "\\" + ConfFileName;
+            var confPath = GetConfPath();
             
             if (File.Exists(confPath))
             {
@@ -111,8 +115,7 @@ namespace Aria2Launcher.Services
 
         public void Save([CallerMemberName] string propertyName = null)
         {
-            string dirPath = AppDomain.CurrentDomain.BaseDirectory;
-            var confPath = dirPath + "\\" + ConfFileName;
+            var confPath = GetConfPath();
 
             var text = JsonConvert.SerializeObject(this);
             File.WriteAllText(confPath, text);
